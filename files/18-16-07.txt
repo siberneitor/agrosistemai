@@ -1,0 +1,17 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+huitzuco guerreo
+tel: 7271028618
+NO. ticket :
+cliente:3
+15-02-2019   18:16:07
+
+cantidad      codigo       articulo         precio    total
+1         7501017006007      chiles serranos 105g            10        10
+1         7501003340115      mayonesa 105g            12        12
+
+                  TOTAL :        22
+efectivo :25
+Cambio :3
+Cantidad de productos :2
+

@@ -1,0 +1,18 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+huitzuco guerreo
+tel: 7271028618
+NO. ticket :
+no. cliente:2
+16-02-2019   11:36:44
+
+cantidad      codigo       articulo         precio    total
+1         7509546003108      pasta dental colgate 50 ml            12        12
+1         7501017006007      chiles serranos 105g            10        10
+1         7501003340115      mayonesa 105g            12        12
+
+                  TOTAL :        34
+efectivo :40
+Cambio :6
+Cantidad de productos :3
+

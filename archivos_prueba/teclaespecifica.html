@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+	<script src="funcionesJSpropias.js"></script>
+	<script>
+		
+	</script>
+</head>
+<body>
+	<a href="f1.html">agregar producto</a>
+	<p>
+	<form id="form2"  method="post" accept-charset="utf-8" class="form-horizontal">
+		<label><H2>punto de venta</H2></label>
+		<P>
+		<label for="ttcodigo">codigo</label>
+		<input type="text" class="" name="txtcodigo" id="ttcodigo" placeholder="codigo"autofocus>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<label for="tcliente"> no cliente</label>
+		<input type="text" class="tcliente" name="txtcliente" id="tcliente" placeholder="cliente" hidden="false">
+		<p>
+		<input type="text" class="td1" name="tdato1" hidden>
+		<input type="text" class="td2" name="tdato2" hidden>
+		<p>
+			<div class="form-group">
+		<label>codigo:</label>	
+		<input type="text" class="td3" name="tdato3" placeholder="codigo">
+		<label>articulo:</label>	
+		<input type="text" class="td4" name="tdato4" placeholder="articulo">
+		<label>precio:</label>	
+		<input type="text" class="td5" name="tdato5" placeholder="precio">
+	</div>
+	</form>
+	<button id="search" class="btn btn-primary">buscar</button>
+	<button id="btnadd" class="btn btn-dark">añadir</button>	
+	<button id="btncobrar"  data-toggle="modal" data-target="#myModal" class="btn btn-success">cobrar</button>	
+	<button id="btnborrar" class="btn btn-danger">Limpiar</button>
+	<div class="divR"></div>
+	
+	<!--<h5></h5>-->
+	<div style="width: 800px">
+		<h3></h3>
+		<div id="divtabla">
+			<h4></h4>
+		</div>
+		<div style="margin-left:80px; margin-top:1px; position:relative">
+			<h1></h1>
+		</div>
+	</div>
+	<h2></h2>
+
+
+
+<script>
+	$(document).ready(function(){
+		
+
+	//evento a realizar al presionar "enter" en el campo de ingreso de codigo
+			function PulsarTecla(event)
+{
+    tecla = event.keyCode;
+ 
+    if(tecla==9)
+    {
+        //foto anterior
+       alert("37")
+    }
+    
+    if(tecla==17)
+    {
+        //foto siguiente
+       alert("39")
+    }
+}
+			$('#ttcodigo').keypress(PulsarTecla());
+				
+				
+       			
+		
+			
+		});
+		
+		
+	
+			
+</script>
+</body>
+</html>

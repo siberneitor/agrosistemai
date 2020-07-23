@@ -1,0 +1,85 @@
+<!--<html>
+<head>
+<script src="jquery-3.2.1.min.js"></script>
+	
+	<script>
+
+		$(document).ready(function(){
+				alert('si sabes');
+				$('#text1').val('');
+				$('#text1').val('unos');
+
+				$("button").on("click", function(){
+						alert('esta es la funcion on click del boton');
+				});
+
+				$("#text2").on("keypress", function(){
+						alert('esta es la funcion onkeypress');
+				})
+				
+				$("#text2").on("click", function(){
+						alert('esta es la funcion onclick');
+				})
+			})	
+	</script>
+</head>
+<body>
+	<button>Pulsame</button><br>
+	<input type="text" id="text1"  value="uno">
+	<input type="text" id="text2">
+	
+</body>
+
+</html>
+-->
+<html>
+<head>
+	<script src="jquery-3.2.1.min.js"></script>
+
+
+</head>
+<body>
+<input type="text" id="caja"/>
+<input type="text" id="caja2" autofocus/>
+<input type="text" id="caja3" autofocus/>
+<button>limpiar</button>
+</body>
+
+<script type="text/javascript">
+/*
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==13) alert ('Has pulsado enter');
+}
+*/
+	$(document).ready(function(){
+   
+
+   //$('#caja').keypress(function(e) {
+   
+
+function PulsarTecla(event)
+{
+    tecla = event.keyCode;
+ 
+    if(tecla==120)
+    {
+        //foto anterior
+       alert("37")
+    }
+    
+    if(tecla==19)
+    {
+        //foto siguiente
+       alert("39")
+    }
+}
+ 
+window.onkeydown=PulsarTecla;
+ 
+ 
+ });   
+
+
+</script>
+</html>

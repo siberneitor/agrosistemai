@@ -1,0 +1,41 @@
+.divInputs{
+    background-color: #929599;
+    height: 600px;
+
+
+}
+
+.divListaProd{
+    background-color: #C8CBCF;
+
+
+}
+
+.inputPuntoVenta{
+    width: 30px;
+}
+
+.labelPVtitulo{
+    background-color: #3C3F42;
+    color: #FFF;
+}
+
+.labelInputPV{
+    color: #3393FF;
+}
+
+.labelInputPV2{
+    color: #FFF;
+}
+
+.totalArt{
+    color: #0D3349;
+    font-size: x-large;
+
+}
+
+
+h1{
+    color: #008000;
+}
+
