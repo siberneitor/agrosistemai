@@ -1,10 +1,16 @@
 <?php
 
-//datos de conexion
-$hostname = 'localhost';
-$database = 'sistemaventas';
-$username = 'ubuntu';
-$password = 'Mexico1.';
+//datos de conexion local
+//$hostname = 'localhost';
+//$database = 'sistemaventas';
+//$username = 'ubuntu';
+//$password = 'Mexico1.';
+
+//datos conexion internet
+$hostname = 'bkjqya0pu8yo586xvsnj-mysql.services.clever-cloud.com';
+$database = 'bkjqya0pu8yo586xvsnj';
+$username = 'ud91kir94surbvdx';
+$password = '6c1GWzWXQEGYIBoeTEB3';
 
 //se realiza la conexion
 $mysqli = new mysqli($hostname, $username,$password, $database);
