@@ -1,12 +1,14 @@
 <?php
 include 'header.html';
-include 'modalAddClient.php';
+include 'modalAddProd.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Clientes</title>
-    <script src="/js/clientes.js"></script>
+    <title>Productos</title>
+    <script src="/js/productos.js"></script>
+
+
 
 </head>
 <body>
@@ -44,10 +46,10 @@ include 'modalAddClient.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="nav-link" href="agregarclienteS.php">Agregar Cliente</a>
+                <a class="nav-link" href="AgregarProducto.php">Agregar Producto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="agregarProv.php"></a>
+                <a class="nav-link" href="agregarProv.php">Agregar Proveedor</a>
             </li>
 
         </ul>
@@ -55,21 +57,16 @@ include 'modalAddClient.php';
 </nav>
 
 
-<table id ="tbClientes">
+<table id ="tbAddProd">
     <thead class="text-center">
     <tr>
-        <th>id</th>
-        <th>nombre(s)</th>
-        <th>ap_paterno</th>
-        <th>ap_materno</th>
-        <th>domicilio</th>
-        <th>localidad</th>
-        <th>telefono</th>
-        <th>email</th>
-        <th>fecha_alta</th>
-        <th>cred_actual</th>
-        <th>estatus cred</th>
-        <th>acciones</th>
+        <th>codigo</th>
+        <th>descripcion</th>
+        <th>costo</th>
+        <th>precio</th>
+        <th>proveedor</th>
+        <th>fecha_caducidad</th>
+        <th>Acciones</th>
     </tr>
     </thead>
     <tbody>

@@ -13,8 +13,10 @@ include 'header.html';
 <body>
 <div class = "content">
     <div class="form-group">
-        <form id="formcliente"  method="post" accept-charset="utf-8" class="form-horizontal">
+        <form id="formcliente"  method="GET" accept-charset="utf-8" class="form-horizontal">
             <div class ="form-group row">
+
+                <input type="hidden" name="opcion" id="opcion" value="1">
 
                 <label for ="nombreCliente" class="col-sm-2 col-form-label" >nombre(S)</label>
                 <div class="col-sm-3">

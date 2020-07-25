@@ -52,7 +52,7 @@ include 'header.html';
                 </div>
 
 
-                <div class="col-3">
+                <div class="col-4">
                     <label class = "labelInputPV2">articulo:</label>
                     <input type="text" class="td4 form-control input-sm" name="tdato4" placeholder="articulo" readonly>
 

@@ -1,13 +1,13 @@
 
 $(document).ready(function(){
-
+    //resetea tabla temporal con articulos agregados previamente
     cancelarCobrando();
 
 
 
-        var titulo = $(this).attr("title");
 
-
+    //asigna el nombre de la pestaña a la barrita de titulos negra
+    var titulo = $(this).attr("title");
     var tituloNegro = $('#titulos').text(titulo);
 
 

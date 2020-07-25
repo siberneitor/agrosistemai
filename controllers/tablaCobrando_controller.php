@@ -4,6 +4,7 @@
 //include 'conexion.php';
 include '../database/conexioni.php';
 
+
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
 
@@ -23,22 +24,32 @@ $resultado=$mysqli->query($query);
 
 ?>
 
-<table border="1" class="table-hover">
-<tr>
-	<td>cantidad</td>
-	<td>codigo</td>
-	<td>articulo</td>
-	<td>precio</td>
-	<td>total</td>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-</tr>
+<table id ="tablaCobrando" class="table-hover" >
+<thead style="color: red">
+	<td width="200px">codigo</td>
+	<td width="400px">articulo</td>
+	<td width="100px">precio</td>
+	<td width="100px">cantidad</td>
+	<td width="100px">total</td>
+
+</thead>
 <?php
 $numproductos=0;
 $totalUnidadesBD=0;
 //while ($r=mysql_fetch_row($q2)){
-while ($fila = $resultado->fetch_row()) {
+//fetch_array(MYSQLI_ASSOC)
+//while ($fila = $resultado->fetch_row()) {
+//while ($fila = $resultado->fetch_assoc()) {
+while($fila = $resultado->fetch_array()){
+    //$tipoDato=gettype($fila);
+	//$codigo=$fila['campo1'];
 	$codigo=$fila[0];
+	//$articulo=$fila['campo2'];
 	$articulo=$fila[1];
+	//$precio=$fila['campo3'];
 	$precio=$fila[2];
 	//$unidades=$fila[4];
    // var_dump($codigo);
@@ -81,14 +92,14 @@ while ($fila = $resultado->fetch_row()) {
 
 
 
-	<tr>
+	<tbody>
 	  	<!--<td> --><?php// echo $numeroFilas;?><!--</td>-->
-        <td><?php echo $unidadesInt;?></td>
         <td><?php echo $codigo;?></td>
-		<td><?php echo $articulo;?></td>
+        <td><?php echo $articulo;?></td>
 		<td><?php echo $precio;?></td>
+		<td><?php echo $unidadesInt;?></td>
 		<td><?php echo $totalporprod;?></td>
-	</tr>
+	</tbody>
 
 
 	<!--

@@ -62,6 +62,7 @@ function buscarcod($cod){
 
 
   				$('.divR').load('/controllers/tablaCobrando_controller.php');
+
 				$('#ttcodigo').focus();
   				$('#ttcodigo').val('');
   				$('.td1').val('');
@@ -127,6 +128,7 @@ function agregarProducto($codigo,$articulo,$costo,$precio,$provee,$fcad){
 function agregarProv($cadena){
 
 	//alert ($cadena);
+
 
 	$.ajax({
 		type:'GET',
