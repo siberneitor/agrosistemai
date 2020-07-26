@@ -1,7 +1,4 @@
 <!--Modal para CRUD-->
-<?php
-include '../controllers/AJAX/obtenerProv.php';
-?>
 
 <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -11,33 +8,33 @@ include '../controllers/AJAX/obtenerProv.php';
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formUsuarios">
+            <form id="formInv">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="codigo" class="col-form-label">Codigo:</label>
-                                <input type="text" class="form-control" id="codigo">
+                                <label for="Fcodigo" class="col-form-label">Codigo:</label>
+                                <input type="text" class="form-control" id="Fcodigo" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="descripcion" class="col-form-label">Descripcion</label>
-                                <input type="text" class="form-control" id="descripcion">
+                                <label for="Fdescripcion" class="col-form-label">Descripcion</label>
+                                <input type="text" class="form-control" id="Fdescripcion" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="costo" class="col-form-label">Costo</label>
-                                <input type="text" class="form-control" id="costo">
+                                <label for="Funidades" class="col-form-label">Unidades</label>
+                                <input type="text" class="form-control" id="Funidades">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="precio" class="col-form-label">Precio</label>
-                                <input type="text" class="form-control" id="precio">
+                                <label for="Fcosto" class="col-form-label">Costo</label>
+                                <input type="text" class="form-control" id="Fcosto">
                             </div>
                         </div>
                     </div>
@@ -48,19 +45,37 @@ include '../controllers/AJAX/obtenerProv.php';
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="selectProv" class="col-form-label">proveedor:</label>
+                                <label for="Fprecio" class="col-form-label">Precio:</label>
 
-                                    <input type="text" class="form-control" id="proveedor">
+                                    <input type="text" class="form-control" id="Fprecio">
 
 
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="fecha_caducidad" class="col-form-label">fecha_cad</label>
-                                <input type="text" class="form-control" id="fecha_caducidad">
+                                <label for="Fcad" class="col-form-label">Fecha Caducidad:</label>
+
+                                <input type="text" class="form-control" id="Fcad">
+
+
                             </div>
                         </div>
+                    </div>
+
+                    <div class = "row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+
+
+                                <!-- Material indeterminate -->
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="statusInv" >
+                                    <label class="form-check-label" for="statusInv">Activo</label>
+                                </div>
+
+                    </div>
+                    </div>
                     </div>
 
 

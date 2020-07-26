@@ -1,4 +1,5 @@
 //busca el producto por codigo , lo agrega a tabla temporal y muestra la tabla cobrando
+
 function buscarcod($cod){
 
 
@@ -124,6 +125,55 @@ function agregarProducto($codigo,$articulo,$costo,$precio,$provee,$fcad){
 	});
 }
 
+function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$addFcad,$faddIdGasto){
+	//alert('YEA');
+
+	cadena={
+		opcion:1,
+		addCodInv:$addCodInv,
+		addUnidInv:$unidades,
+		addCostoInv:$addCostoInv,
+		addPrecioInv:$addPrecioInv,
+		addFcad:$addFcad,
+		faddIdGasto:$faddIdGasto
+	}
+
+	//console.log($addFcad);
+
+	$.ajax({
+		type:'POST',
+		url:'../controllers/AJAX/agregarInventario_ajax.php',
+		data:cadena,
+		success:function(x){
+			console.log('entro a success');
+
+			console.log(x);
+
+			if (x!=1){
+				alert('error al insertar');
+			}else{
+				//$('.divR').load('tablaAgregarProducto.php');
+				alert("insertado correctamente 1");
+			}
+
+		},
+		error:function(jqXHR,estado,error){
+			console.log('entro a error');
+			console.log(estado);
+			console.log(error);
+		},
+		complete:function(){
+
+			$('.text1').val('');
+			$('.text2').val('');
+			$('.text3').val('');
+			$('.text4').val('');
+			$('.text5').val('');
+			$('.text6').val('');
+			$('.text1').focus();
+		}
+	});
+}
 
 function agregarProv($cadena){
 

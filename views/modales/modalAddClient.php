@@ -1,7 +1,5 @@
 <!--Modal para CRUD-->
-<?php
-include '../controllers/AJAX/obtenerProv.php';
-?>
+
 
 <div class="modal fade" id="modalAddClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

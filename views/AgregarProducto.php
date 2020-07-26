@@ -1,7 +1,7 @@
 <?php
 include 'header.html';
 
-include '../controllers/AJAX/obtenerProv.php';
+include '../controllers/AJAX/obtenerProv_select.php';
 ?>
 <!DOCTYPE html>
 <html>

@@ -122,7 +122,7 @@ $(document).ready(function() {
 	tablaUsuarios = $('#tbAddProd').DataTable({
 		"ajax":{
 			//"url": "../controllers/AJAX/addProd_controller.php",
-			"url": "../controllers/AJAX/addProd_controller.php",
+			"url": "../controllers/AJAX/addProd_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			//"data":{opcion:'4'}, //enviamos opcion 4 para que haga un SELECT
 			"dataSrc":""
