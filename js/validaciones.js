@@ -1,4 +1,5 @@
 
+
 function validarInputNum ($input){
 
 	validacion = true;
@@ -8,7 +9,7 @@ function validarInputNum ($input){
 	if ($input == '') {
 
 		validacion=false;
-		mensaje = 'favor de ingresar un codigo';
+		mensaje = 'falta ingresar un dato';
 		//console.log('validacion input vacio  = primer false');
 	}else if($input == 0){
 		validacion=false;

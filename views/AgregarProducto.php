@@ -36,18 +36,21 @@ include '../controllers/AJAX/obtenerProv_select.php';
                 <input type="text" class="form-control input-sm" id ="addArt" name="addArt" placeholder="articulo">
             </div>
             </div>
+            <!--
             <div class="form-group row">
                 <label for ="addCosto" class="col-sm-2 col-form-label">costo</label>
             <div class ="col-sm-3">
                 <input type="text" id ="addCosto" class="form-control input-sm" name="addCosto" placeholder="costo">
             </div>
         </div>
+
             <div class="form-group row">
                 <label for ="addPrecio" class="col-sm-2 col-form-label">precio</label>
                  <div class="col-sm-3">
                     <input type="text" id ="addPrecio" class="form-control input-sm" name="addPrecio" placeholder="precio">
                 </div>
             </div>
+            -->
             <div class="form-group row">
                 <label for ="selectProv" class="col-sm-2 col-form-label">proveedor</label>
                 <div class="col-sm-2">
@@ -65,12 +68,14 @@ include '../controllers/AJAX/obtenerProv_select.php';
             </div>
                 <a href="agregarProv.php">agregar Proveedor</a>
             </div>
+            <!--
             <div class="form-group row">
                 <label for="addFcad" class="col-sm-2 col-form-label">fecha caducidad</label>
                 <div class ="col-sm-3">
                 <input type="text" id ="addFcad" class="form-control input-sm" name="addFcad" placeholder="fecha caducidad">
             </div>
         </div>
+            -->
             <div class="form-group row">
                 <div class ="col-sm-6">
             <button id="btnAddProd" class="btn btn-success">agregar</button>

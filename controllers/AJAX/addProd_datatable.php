@@ -1,9 +1,7 @@
 <?php
 include '../../database/conexioni.php';
 
-        //var_dump('entra a producto controller');
-
-//$query= "select codigo, descripcion,costo,precio,proveedor,fecha_caducidad from producto";
+/*
 $query= "select producto.codigo,
 	 producto.descripcion,
 	 producto.costo,
@@ -12,6 +10,19 @@ $query= "select producto.codigo,
 	 producto.fecha_caducidad	 
  from producto
  join proveedores on producto.id_proov = proveedores.id_proov";
+*/
+
+$query="select producto.codigo,
+producto.descripcion,
+inventario.costo,
+inventario.precio,
+proveedores.nombre proveedor,
+inventario.fecha_caducidad
+from inventario
+ join producto ON producto.codigo = inventario.codigo
+ join proveedores ON producto.id_proov = proveedores.id_proov;
+";
+
     $resultado= $mysqli->query($query);
     $data= $resultado -> fetch_all(MYSQLI_ASSOC);
 

@@ -57,6 +57,7 @@
                                 <label for="Fcad" class="col-form-label">Fecha Caducidad:</label>
 
                                 <input type="text" class="form-control" id="Fcad">
+                              <!--  <input type="date" class="form-control" id="Fcad"> -->
 
 
                             </div>

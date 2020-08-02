@@ -3,12 +3,13 @@
 include '../../database/conexioni.php';
 
 
+
 	$Cod=$_POST['Codigo'];
 	$Art=$_POST['Art'];
 	$Costo=$_POST['Costo'];
-	$Precio=$_POST['Precio'];
+    $Precio=$_POST['Precio'];
 	$Provee=$_POST['Provee'];
-	$Fcad=$_POST['Fcad'];
+    $Fcad=$_POST['Fcad'];
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
@@ -16,7 +17,7 @@ $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
 
 switch ($opcion){
     case 1:
-        echo $rrr=$mysqli->query("insert into producto values (NULL,'$Cod','$Art','$Costo','$Precio','$Fcad','$Provee')");
+        echo $rrr=$mysqli->query("insert into producto (codigo,descripcion,id_proov) values ('$Cod','$Art','$Provee')") or die($mysqli->error);
 
     break;
     case 2:
@@ -24,17 +25,26 @@ switch ($opcion){
         $result = $consulta->fetch_assoc();
         $idProov=$result['id_proov'];
 
-
+        /*
         $rrr=$mysqli->query("
-        update producto 
-set 
+        update producto set 
  descripcion ='$Art',
- costo='$Costo',
- precio='$Precio',
- fecha_caducidad='$Fcad',
   id_proov = '$idProov'
  where codigo = '$Cod';
         ");
+        */
+        $updateProd=$mysqli->query("
+        update producto
+JOIN inventario
+ON producto.codigo = inventario.codigo
+JOIN proveedores ON producto.id_proov = proveedores.id_proov
+set producto.descripcion = '$Art',
+    inventario.costo = '$Costo' ,
+    inventario.precio = '$Precio',
+    proveedores.nombre = '$Provee',
+    inventario.fecha_caducidad = '$Fcad'
+where producto.codigo =  '$Cod'");
+
         break;
     case 3:
         $consulta = "DELETE FROM PRODUCTO WHERE user_id='$user_id' ";
@@ -57,10 +67,6 @@ $rm= $rmax["NUMAX"];
 //echo $rm;
 $rm++;
 
-
-	//echo $rrr=mysql_query("insert into producto values ('$rm','$Prod','$Art','$Costo','$Precio','$Provee','$Fcad')")or die(mysql_error());
-	//echo $rrr=$mysqli->query("insert into producto values ('$rm','$Prod','$Art','$Costo','$Precio','$Provee','$Fcad')");
-	//echo $rrr=$mysqli->query("insert into producto values (NULL,5,'produucto4',12,14,NULL,'2020-12-12',2)");
 
 
 	//$q2=mysql_query("select distinct *from producto")or die(mysql_error());

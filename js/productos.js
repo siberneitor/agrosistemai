@@ -29,11 +29,11 @@ $(document).ready(function() {
 
 		var codigoProd = $('#addCod').val();
 		var nombreProd = $('#addArt').val();
-		var costoProd = $('#addCosto').val();
-		var precioCod = $('#addPrecio').val();
+		//var costoProd = $('#addCosto').val();
+		//var precioCod = $('#addPrecio').val();
 		var proovProd = $('#selectProv').val();
-		var fechaCad = $('#addFcad').val();
-		agregarProducto(codigoProd,nombreProd,costoProd,precioCod,proovProd,fechaCad);
+		//var fechaCad = $('#addFcad').val();
+		agregarProducto(codigoProd,nombreProd,proovProd);
 
 		//console.log(codigoProd + nombreProd + costoProd + precioCod + proovProd + fechaCad);
 	});
@@ -121,7 +121,6 @@ $(document).ready(function() {
 	//alert('it is ok');
 	tablaUsuarios = $('#tbAddProd').DataTable({
 		"ajax":{
-			//"url": "../controllers/AJAX/addProd_controller.php",
 			"url": "../controllers/AJAX/addProd_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			//"data":{opcion:'4'}, //enviamos opcion 4 para que haga un SELECT

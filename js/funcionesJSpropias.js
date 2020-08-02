@@ -1,48 +1,65 @@
+
 //busca el producto por codigo , lo agrega a tabla temporal y muestra la tabla cobrando
+function buscarcod($cod,$unidades){
 
-function buscarcod($cod){
-
-
-	txtUnidades = $('#txtunidad').val();
+	//txtUnidades = $('#txtunidad').val();
 
 	cadena={codigo:$cod,
-		Unidades: txtUnidades
-
+		Unidades: $unidades
 	}
-	
 	 $.ajax({
-  		//url:'f3.php',
-  		//url:'procesaBuscaCod.php',
   		url:'/controllers/buscaCod_controller.php',
+  		//url:'/controllers/restarunidadesInput.php',
   		type:'POST',
   		data:cadena,
-  		success:function(xx){
-  			dividir=xx.split('/');
+  		success:function(resultado){
+  			console.log('entra a success y el resultado es: '+ resultado);
+
+  			//se recibe array con resultados y se aplica funcion para dividirlo
+  			dividirResultado=resultado.split('/');
+
+			
+				bool = dividirResultado[0];
+				mensajeError = dividirResultado[1];
+				inputCodigo=dividirResultado[2];
+				nombreArtRead=dividirResultado[3];
+				$Xunidad=dividirResultado[4];
+			    unidadesInput =dividirResultado[5];
+				$totalXcod=dividirResultado[6];
+				unidadesTempInv = dividirResultado[7];
+
+
+			console.log('unidadesTempInv: '+unidadesTempInv);
+
   		},
-  		error:function(e,ee,eee){
-  			console.log(e);
-  			console.log(ee);
-  			console.log(eee);
+  		fail:function(resultado){
+			console.log('entra a fail y el resultado es: '+resultado);
   		},
   		complete: function(){
+			$Xunidad=dividirResultado[4];
 
-  			if(dividir==""){
-  				alert('el codigo ingresado no existe');
-  				UNO=$("#ttcodigo").val('');
+  			//validacion para saber si encontro resultado o no
+  			if(bool == false) {
+  				//mensajeError =  dividirResultado[1];
+				alert('el resultado ajax es false y el mensaje error es: '+mensajeError);
+
+  				//alert('el codigo ingresado no aparece en el inventario 	');
+  				inputCodigo=$("#ttcodigo").val('');
+				$('#txtunidad').val(1);
   			}else{
-  							
-	  			UNO=$(".td3").val(dividir[0]);
-	  			dos=$(".td4").val(dividir[1]);
-	  			tres=$(".td5").val(dividir[2]);
-				unidadesBD=dividir[3];
-				$Xunidades=dividir[4];
 
-	  			//console.log('uno: '+UNO);console.log('dos: '+dos);console.log('tres: '+tres);
-				unidadesBDint=parseInt(unidadesBD);
-				totalUnidades= totalUnidades + unidadesBDint;
+  				//se asignan valores a inputs de solo lectura
+	  			$("#codRead").val(inputCodigo);
+	  			$("#nombreArtRead").val(nombreArtRead);
+	  			$("#precioRead").val($Xunidad);
 
-  				//PRECIO=dividir[2];
-  				PRECIO=$Xunidades;
+				unidadesInputint=parseInt(unidadesInput);
+				totalUnidades= totalUnidades + unidadesInputint;
+
+				$Xcod=parseInt($Xunidad) * parseInt(unidadesInput);
+
+  				//PRECIO=$Xunidad;
+  				PRECIO=$Xcod;
   				precio_int=parseInt(PRECIO);
 				TOTAL=TOTAL+precio_int;
 
@@ -52,18 +69,18 @@ function buscarcod($cod){
 					currency: 'USD',
 					minimumFractionDigits: 0
 				})
-				var value = TOTAL
+				var value = TOTAL;
 
 				$("h1").text('TOTAL: '+ formatter.format(value));
-				console.log(TOTAL);
+				//console.log(TOTAL);
 
 				$("#labelTotalArt").text('total de articulos: '+ totalUnidades);
 
-				//$('#precioTotal').text('');
+				//se carga tabla con resultados.
+				$('.divR').load('/controllers/tablaCobrando_controller.php');
+				//console.log('esto es despues de mostrar la tablita');
 
-
-  				$('.divR').load('/controllers/tablaCobrando_controller.php');
-
+ 				//se resetean inputs
 				$('#ttcodigo').focus();
   				$('#ttcodigo').val('');
   				$('.td1').val('');
@@ -76,18 +93,14 @@ function buscarcod($cod){
 
 }
 
-
 //funcion que agrega producto
-function agregarProducto($codigo,$articulo,$costo,$precio,$provee,$fcad){
+function agregarProducto($codigo,$articulo,$provee){
 
 	cadena={
 		opcion:1,
 		Codigo:$codigo,
 		Art:$articulo,
-		Costo:$costo,
-		Precio:$precio,
 		Provee:$provee,
-		Fcad:$fcad
 	}
 
 	$.ajax({
@@ -125,17 +138,17 @@ function agregarProducto($codigo,$articulo,$costo,$precio,$provee,$fcad){
 	});
 }
 
-function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$addFcad,$faddIdGasto){
+function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$faddIdGasto,usaFcad){
 	//alert('YEA');
-
 	cadena={
 		opcion:1,
 		addCodInv:$addCodInv,
 		addUnidInv:$unidades,
 		addCostoInv:$addCostoInv,
 		addPrecioInv:$addPrecioInv,
-		addFcad:$addFcad,
-		faddIdGasto:$faddIdGasto
+		//addFcad:$addFcad,
+		faddIdGasto:$faddIdGasto,
+		usaFcad : usaFcad
 	}
 
 	//console.log($addFcad);
@@ -144,16 +157,21 @@ function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$addF
 		type:'POST',
 		url:'../controllers/AJAX/agregarInventario_ajax.php',
 		data:cadena,
-		success:function(x){
+		success:function(respuesta){
 			console.log('entro a success');
+			//console.log(respuesta);
 
-			console.log(x);
+			dividirRespuesta=respuesta.split('/');
+			bool =dividirRespuesta[0];
+			mensaje = dividirRespuesta[1];
 
-			if (x!=1){
-				alert('error al insertar');
+			//alert('bool: '+bool+ '; ' + 'mensaje: '+mensaje)
+
+			if (bool){
+				alert('true' + mensaje);
+
 			}else{
-				//$('.divR').load('tablaAgregarProducto.php');
-				alert("insertado correctamente 1");
+				alert('false'+ mensaje);
 			}
 
 		},
@@ -163,14 +181,6 @@ function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$addF
 			console.log(error);
 		},
 		complete:function(){
-
-			$('.text1').val('');
-			$('.text2').val('');
-			$('.text3').val('');
-			$('.text4').val('');
-			$('.text5').val('');
-			$('.text6').val('');
-			$('.text1').focus();
 		}
 	});
 }
@@ -243,7 +253,6 @@ function agregarCLiente($valores){
 
 }
 
-
 function buscarcliente(idc){
 	dato={idclient:idc
 	}
@@ -292,15 +301,19 @@ function ventanacobrar(){
 function cobrar(){
 	$('#txtcambio').focus();
 	nv=$('#nocli').text();
+	idCliente =$('#tcliente').val();
 
 	enviar={
+		TOTAL:TOTAL,
+		totalUnidades:totalUnidades,
 		cobro:valorcambio,
 		cambiot:vcambio,
-		numcli:nv
+		numcli:idCliente
 	}
-	
+	console.log('no cliente: '+idCliente);
 	$.ajax({
-		url:'f5.php',
+		//url:'f5.php',
+		url:'../controllers/procesarVenta_controller.php',
 		type:'POST',
 		data:enviar,
 		success:function(x){
@@ -323,27 +336,10 @@ function cobrar(){
 		}
 	})
 }
-/*
-function buscadordinamico(){
-	$(document).load('componentes/buscador.php');
-	('#buscadorvivo').select2();
 
-			$('#buscadorvivo').change(function(){
-				$.ajax({
-					type:"post",
-					data:'valor=' + $('#buscadorvivo').val(),
-					url:'php/crearsession.php',
-					success:function(r){
-						$('#tabla').load('componentes/tabla.php');
-						alert ('has seleccionado'+r);
-					}
-				});
-			});
-}
-
-*/
 //borra datos de la tabla temporal y de la tabla cobrando
 function cancelarCobrando(){
+	//alert ('si se ejecuta funcion cancelar cobrando ');
 	
 	$.ajax({
 		url:'/controllers/AJAX/eliminarCobrar.php',
@@ -368,9 +364,9 @@ function cancelarCobrando(){
 			TOTAL=0;
 
 			//vaciar valores de campos de texto de desc de punto vent
-			$(".td3").val('');
-			$('.td4').val('');
-			$(".td5").val('');
+			$("#codRead").val('');
+			$('#nombreArtRead').val('');
+			$("#precioRead").val('');
 
 			nv=$('#nocli').empty();
 			//$('#tcliente').attr('hidden','false');
@@ -378,3 +374,56 @@ function cancelarCobrando(){
 		}
 	});
 }
+
+function mostrarTablaAlertaInv(){
+	console.log('SE EJECUTA FUNCION MOSRAR TABLA ALERT DIV');
+	$('#divTabAlertInv').hide();
+	$peticionAjax =$.ajax({
+		url: '../controllers/AJAX/addInv_datatable.php',
+		type: "POST",
+		data: {opcion: 2},
+		success: function (datos){
+			if(datos!=0){
+				var tablaAlertInv = $('#tbAlertaInv').DataTable({
+					"ajax":{
+						//"url": "../controllers/AJAX/addProd_controller.php",
+						"url": "../controllers/AJAX/addInv_datatable.php",
+						"method": 'POST', //usamos el metodo POST
+						"data":{opcion:'2'}, //enviamos opcion 4 para que haga un SELECT
+						"dataSrc":""
+					},
+					"searching": false,
+					"bPaginate": false,
+					"bLengthChange": false,
+					"bInfo": false,
+					"columns":[
+						{"data": "codigo"},
+						{"data": "descripcion"},
+						{"data": "unidades"},
+						{"data": "costo"},
+						{"data": "precio"},
+						{"data": "proveedor"},
+						{"data": "fecha_ingreso"},
+						{"data": "fecha_caducidad"},
+						{"data": "estatus"},
+						{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+					],
+					"language": {
+						"emptyTable": "no se encontraron datos"
+					},
+					"destroy": true
+				});
+				tablaAlertInv.ajax.reload(null, false);
+				$('#divTabAlertInv').show();
+				$('hr').show();
+			}else{
+				$('#divTabAlertInv').hide();
+				tablaAlertInv.ajax.reload(null, false);
+				$('#linea').hide();
+			}
+		},
+		fail: function (error) {
+			alert('error: '+error);
+		}
+	});
+};

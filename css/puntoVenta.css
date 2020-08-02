@@ -1,12 +1,18 @@
 .divInputs{
-    background-color: #929599;
+    /* border: 3px wheat inset; */
+    border: 3px groove lightgray;
+    border-radius: 10px;
+
+
+
+    background-color: #ECF9FA;
     height: 600px;
 
 
 }
 
 .divListaProd{
-    background-color: #C8CBCF;
+    background-color: #F7F8F9;
 
 
 }
@@ -21,11 +27,11 @@
 }
 
 .labelInputPV{
-    color: #3393FF;
+    color: #007bff;
 }
 
 .labelInputPV2{
-    color: #FFF;
+    color: #4e555b;
 }
 
 .totalArt{

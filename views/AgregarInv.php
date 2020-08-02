@@ -1,6 +1,6 @@
 <?php
 include 'header.html';
-
+include '../controllers/variables.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,30 +44,31 @@ include 'header.html';
             <div class="form-group row">
                 <label for ="addPrecioInv" class="col-sm-2 col-form-label">precio</label>
                 <div class="col-sm-3">
-                    <input type="text" id ="addPrecioInv" class="form-control input-sm" name="addPrecioInv" placeholder="precio">
+                    <input type="text" id ="addPrecioInv" class="form-control input-sm" name="addPrecioInv" placeholder="precio" >
                 </div>
             </div>
             <div class="form-group row">
                 <label for="addFcad" class="col-sm-2 col-form-label">fecha caducidad</label>
                 <div class ="col-sm-3">
-                    <input type="text" id ="addFcad" class="form-control input-sm" name="addFcad" placeholder="fecha caducidad">
+
+                    <!-- inicia checkbox -->
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="checkboxFcadInv">
+                        <label class="form-check-label" for="addFcad">Activar</label>
+                    </div>
+
+                    <!-- termina checkbox -->
+
+                  <!-- <input type="text" id ="addFcad" class="form-control input-sm" name="addFcad" placeholder="(yyyy/mm/dd)"> -->
+                    <input type="date" id="addFcad" name="addFcad"
+                           min="<?php echo $fechaActual ?>" max="2030-12-31">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="addIdGasto" class="col-sm-2 col-form-label">No. nota compra</label>
                 <div class ="col-sm-3">
                     <input type="text" id ="addIdGasto" class="form-control input-sm" name="addIdGasto" placeholder="No. nota compra">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="form-check-label" for="addStatusInv">Activo</label>
-
-                <div class="form-check">
-                    <div class ="col-sm-3">
-                    <input type="checkbox" class="form-check-input" id="" checked>
-
-                    </div>
                 </div>
             </div>
 

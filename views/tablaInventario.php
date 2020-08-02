@@ -18,13 +18,20 @@ include 'modales/modalAddInv.php';
             <li class="nav-item">
                 <a class="nav-link" href="AgregarInv.php">Agregar Inventario</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="agregarProv.php">Agregar Proveedor</a>
-            </li>
 
         </ul>
     </div>
 </nav>
+<div id ="divTabAlertInv" class ="container">
+    <table  class="table">
+        <thead class="table-danger text-center">
+        <tr>
+           <th>ARTICULOS SIN INVENTARIO O CON POCAS UNIDADES</th>
+        </tr>
+        </thead>
+
+    </table>
+
 
 <table id ="tbAlertaInv">
     <thead class="text-center">
@@ -44,7 +51,19 @@ include 'modales/modalAddInv.php';
     <tbody>
     </tbody>
 </table>
-<table id ="tbAddInv">
+</div>
+<hr id ="linea" />
+<div id ="divTabInv" class ="">
+    <table  class="table">
+        <thead class="table-active text-center">
+        <tr>
+            <th>INVENTARIO DE PRODUCTOS</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+<table id ="tbAddInv" >
     <thead class="text-center">
     <tr>
         <th>codigo</th>
@@ -59,7 +78,7 @@ include 'modales/modalAddInv.php';
         <th>Acciones</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class ="table-hover" >
     </tbody>
 </table>
 </body>

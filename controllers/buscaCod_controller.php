@@ -1,58 +1,119 @@
 <?php
-	//include 'conexion.php';
-	 include '../database/conexioni.php';
-	//echo'si llega a buscacod_controller';
+include '../database/conexioni.php';
+include 'funciones.php';
 
-	$rcod=$_POST['codigo'];
-	$unidades = $_POST['Unidades'];
+$rcod=$_POST['codigo'];
+$unidadesInput = $_POST['Unidades'];
+$fechaAct = date("Y-m-d");
 
+$bool = true;
+$mensaje = NULL;
 
+//si el codigo no se encuentra en la tabla producto
+if(!existenciaCodigoProducto($mysqli,$rcod)) {
+    $bool = false;
+    $mensaje =  'el codigo '. $rcod . ' no existe en el sistrema';
+    echo $bool . '/' . $mensaje;
+}
 
-	//print_r($a.'<p>'.$b.'<p>'.$c);
-	//echo $a.'<p>'.$b.'<p>'.$c;
-	 //$qselect=mysql_query("select *from producto where codigo='$rcod'")or die(mysql_error());
-    $seleccionarCodigo=	"select *from producto where codigo='$rcod'";
-	$qselect=$mysqli->query($seleccionarCodigo);
+if(!existenciaCodigoInventario($mysqli,$rcod)){
+    $bool = false;
+    $mensaje =  'el codigo ' .$rcod. ' no ha sido ingresado en el inventario' ;
+    echo $bool . '/' . $mensaje;
+}
 
-	 //var_dump($qselect);
-	 
-	 //verifico si se ingreso un dato en la caja de texto "codigo"
-	 //$numcols=mysql_num_rows($qselect);
-	 $numcols=$qselect->num_rows;
+if(!estatusArticuloInventario($mysqli,$rcod)){
+    $bool = false;
+    $mensaje =  'el codigo ' .$rcod. ' esta inactivo en el inventario' ;
+    echo $bool . '/' . $mensaje;
+}
 
-	 //var_dump('el resultado es'.$numcols.'y aqui termina el resultado');
+/*
+if(!fechaCadArticulo($mysqli,$rcod)){
+    $bool = false;
+    $mensaje =  'el articulo ' .$rcod. ' esta caducado' ;
+    echo $bool . '/' . $mensaje;
+}
+*/
 
-	 if ($numcols==0){
-	// if ($qselect==0){
+if ($bool){
+    //busca las unidades que hay para ese producto en el inventario
+    $seleccionarCodigo="select inventario.codigo as codigoDB,
+                                producto.descripcion as nombreProducto,
+                                inventario.unidades as unidadesinventario,
+                                inventario.precio,
+                                inventario.fecha_caducidad,
+                                inventario.estatus
+                            from inventario  
+                            join producto ON producto.codigo = inventario.codigo
+                            and inventario.codigo = '$rcod'
+                            ";
 
-		 //var_dump('entra al IF');
-	}else{
+    $qselect = $mysqli->query($seleccionarCodigo);
+    $respuestaConsulta = $qselect->fetch_assoc();
 
-	 //$rq=mysql_fetch_row($qselect);
-	 $rq=$qselect->fetch_row();
+    $codigoBD = $respuestaConsulta['codigoDB'];
+    $nombreProd = $respuestaConsulta['nombreProducto'];
+    $precioBD = $respuestaConsulta['precio'];
 
- 
-	 $primer=$rq[1];	 
-	 $segun=$rq[2];	 
-	 $tercer=$rq[4];
+    $unidadesActInventario = $respuestaConsulta['unidadesinventario'];
+    $precioXunidades = $precioBD * $unidadesInput;
 
-	 $precioXunidades = $tercer * $unidades;
-	 
-	//echo $primer.'/'.$segun.'/'.$tercer.'/'.$numcols;
-	echo $primer.'/'.$segun.'/'.$tercer.'/'.$unidades,'/'.$precioXunidades;
+    $valores =  $bool . '/' .$mensaje. '/' . $rcod . '/' . $nombreProd . '/' . $precioBD . '/' . $unidadesInput. '/' . $precioXunidades. '/';
 
+    //procedimiento que  se ejecuta si no existen registros en temporal
+    if (!existenciaArticulosListados($mysqli)) {
 
+        //comprueba si hay unidades suficientes en tabla inventario
+        if(!suficientesUnidadesInv($mysqli,$rcod,$unidadesInput)){
+            $bool = false;
+            $mensaje =  'NO hay suficiente inventario del codigo '. $rcod ;
+            echo $bool . '/' . $mensaje;
+        }else{
+            //hasta aqui vatodo bien
+            $articuloSinListar= articuloSinListar($mysqli,$unidadesActInventario,$unidadesInput,$rcod,$valores,$bool);
 
-	//$rrr=mysql_query("insert into temporal values ('$primer','$segun','$tercer')")or die(mysql_error());
-	$rrr=$mysqli->query("insert into temporal values (NULL,'$primer','$segun','$tercer','$unidades')");
+            $bool = $articuloSinListar[0];
+            $mensaje = $articuloSinListar[1];
+            $arrayDatos = $articuloSinListar[2];
 
+            if ($bool){
+                echo $arrayDatos;
+            }else {
+                // $valores[0];
+                echo $bool . '/' . $mensaje;
+            }
+        }
+    } //procedimiento que se ejecuta si ya existen registros en tabla temporal
+     else {
 
+        //obtener las unidades de invetario temporales
+        $existenciaCodListado = existenciaCodListado($mysqli,$rcod);
 
+            if($existenciaCodListado){
+                $unidadesNuevas = $existenciaCodListado['unidades_temp_inv'];
+                $codigoExiste = true;
+            }
+            else{
+                $unidadesNuevas =$unidadesActInventario;
+                $codigoExiste = false;
+            }
 
-		// var_dump('pasas2');
-	//$q2=mysql_query("select distinct *from producto")or die(mysql_error());
-		 $q2=$mysqli->query("select distinct *from producto");
-	
-	}
+        $articuloYaListado =  articuloYaListado($mysqli,$unidadesNuevas,$unidadesInput,$rcod,$valores,$codigoExiste,$bool);
+
+        $bool = $articuloYaListado[0];
+        $mensaje = $articuloYaListado[1];
+        $arrayDatos = $articuloYaListado[2];
+
+        if ($bool){
+            echo $arrayDatos;
+        }else {
+            echo $bool . '/' . $mensaje;
+        }
+    }
+    if($bool){
+        $rrr = $mysqli->query("insert into temporal2 values (NULL,'$rcod','$nombreProd','$precioBD','$unidadesInput')");
+    }
+}
 
 ?>
