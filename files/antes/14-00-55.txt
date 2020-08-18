@@ -1,7 +1,0 @@
-1         1      producto1            12.00        12
-
-                  TOTAL :        12
-efectivo :18
-Cambio :6
-Cantidad de productos :1
-
