@@ -1,0 +1,10 @@
+.divInputs {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.distanciaInput {
+    padding: 10px;
+    margin: 10px;
+
+}

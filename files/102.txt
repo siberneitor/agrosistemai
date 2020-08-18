@@ -1,0 +1,23 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+Huitzuco Guerrero
+tel: 7271028618
+NO. ticket :102
+no. cliente:2
+Tipo de venta:CREDITO
+16-08-2020   22:57:21
+
+cantidad      codigo       articulo         precio    total
+1         1      producto1            12.00        12.00
+1         10      descripcion prueba            50.00        50.00
+1         11      descripcion prueba            25.00        25.00
+1         14      descripcion prueba            200.00        200.00
+1         15      sopa maruchan            22.00        22.00
+1         18      articulo18            48.00        48.00
+1         21      articulo 21            56.00        56.00
+1         22      articulo 22            76.00        76.00
+
+                  TOTAL :        489
+efectivo :0
+Cambio :0
+Cantidad de productos :8

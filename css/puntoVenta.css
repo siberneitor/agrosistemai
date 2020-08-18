@@ -1,0 +1,60 @@
+.divInputs{
+    /* border: 3px wheat inset; */
+    border: 3px groove lightgray;
+    border-radius: 10px;
+
+
+
+    background-color: #ECF9FA;
+    height: 600px;
+
+
+}
+
+.divListaProd{
+    background-color: #F7F8F9;
+
+
+}
+
+.inputPuntoVenta{
+    width: 30px;
+}
+
+.labelPVtitulo{
+    color: #FFF;
+}
+
+.labelInputPV{
+    color: #007bff;
+}
+
+.labelInputPV2{
+    color: #4e555b;
+}
+
+.labelTotalArt{
+    color: #0D3349;
+    font-size: larger;
+
+}
+
+.divTotal {
+    /*height: 45px;*/
+    /*height: 15px;*/
+    width: 310px;
+    /*background-color: white;*/
+    margin-top: 10px;
+}
+.divTotalArt{
+
+    /*height: 3px;*/
+    width:  180px;
+    /*background-color: white;*/
+    margin-top: 80px;
+}
+
+h1{
+    color: #008000;
+}
+

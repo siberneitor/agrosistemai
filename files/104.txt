@@ -1,0 +1,16 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+Huitzuco Guerrero
+tel: 7271028618
+NO. ticket :104
+no. cliente:1
+Tipo de venta:contado
+16-08-2020   23:08:02
+
+cantidad      codigo       articulo         precio    total
+17         31      maiz sonaloense 50kg            280.00        4760.00
+
+                  TOTAL :        4760
+efectivo :5000
+Cambio :240
+Cantidad de productos :17

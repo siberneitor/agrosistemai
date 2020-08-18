@@ -1,0 +1,16 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+huitzuco guerreo
+tel: 7271028618
+NO. ticket :
+no. cliente:
+10-04-2020   21:20:24
+
+cantidad      codigo       articulo         precio    total
+2         7501003340115      mayonesa 105g            12        24
+
+                  TOTAL :        24
+efectivo :25
+Cambio :1
+Cantidad de productos :2
+

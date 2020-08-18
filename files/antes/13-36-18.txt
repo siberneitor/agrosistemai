@@ -1,0 +1,18 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+huitzuco guerreo
+tel: 7271028618
+NO. ticket :
+cliente:
+10-02-2019   13:36:18
+
+cantidad      codigo       articulo         precio    total
+3         7501003340115      mayonesa 105g            12        36
+3         7501003336125      mermelada mc cormic 270g            16        48
+2         7501017006007      chiles serranos 105g            10        20
+
+                  TOTAL :        104
+efectivo :110
+Cambio :6
+Cantidad de productos :8
+

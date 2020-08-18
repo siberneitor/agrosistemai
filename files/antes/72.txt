@@ -1,0 +1,18 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+Huitzuco Guerrero
+tel: 7271028618
+NO. ticket :72
+no. cliente:4
+Tipo de venta:CREDITO
+13-08-2020   00:04:44
+
+cantidad      codigo       articulo         precio    total
+1         3      producto3            200.00        200.00
+1         19      negrito 150g            36.00        36.00
+1         24      galletas maria            10.00        10.00
+
+                  TOTAL :        246
+efectivo :0
+Cambio :0
+Cantidad de productos :3

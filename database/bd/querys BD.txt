@@ -1,0 +1,17 @@
+//tablapago
+create table pago (id_pago int(10) PRIMARY KEY, fechapago date,cantidad float(10),recargo float(10), total float(10),id_credito int(10),campo1 varchar (10), campo2 int(10),campo3 int(10), campo4 varchar(30),campo5 varchar(30),campo6 varchar(30))
+
+//tabla cliente
+create table cliente (id_cliente int(10) PRIMARY KEY, nombre varchar(30),apellido varchar(30), domicilio varchar(100), localidad varchar(100), telefono int(12), email varchar(50), fechadealta date, credito_actual varchar(3),nodecreditos int(3) ,estatus_credito_actual varchar(30), id_credito int(10),campo1 varchar (10), campo2 int(10),campo3 int(10), campo4 varchar(30),campo5 varchar(30),campo6 varchar(30))
+
+//tabla credito
+create table credito (id_credito int(10) PRIMARY KEY, fecha_inicio date,dias_plazo int(3),interes float(3),fecha_vencimiento date,monto_prestado float(10),monto_a_pagar float(10), pagos_realizados int(4),pagos_restantes int(4),id_cliente int(10),campo1 varchar (10), campo2 int(10),campo3 int(10), campo4 varchar(30),campo5 varchar(30),campo6 varchar(30),index(id_cliente),foreign key(id_cliente) references cliente(id_cliente))
+
+//tabla venta
+create table puntoventa (id_venta int(10) PRIMARY KEY AUTO_INCREMENT, codigo int(30),cantidad int(5), producto varchar(100), precio float(10), total float(10), totalcompra float(10), id_cliente int(6),campo1 int(10), campo2 int(10),campo3 int(10), campo4 varchar(30),campo5 varchar(30),campo6 varchar(30),index(id_cliente),foreign key(id_cliente) references cliente(id_cliente))
+
+//tabla producto
+create table producto(id_producto int(10) PRIMARY KEY,codigo int(30),descripcion varchar(30), costo float(10),precio float(10),proveedor varchar(50),fecha_caducidad date)
+
+//tabla stock
+create table stock(id_stock int(10),codigo int(30) PRIMARY KEY,cantidad int(10), costo float(10),precio float(10),proveedor varchar(50),fecha_ingreso date,index(codigo), FOREIGN KEY(codigo) references producto(codigo))
