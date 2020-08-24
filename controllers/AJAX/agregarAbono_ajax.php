@@ -14,18 +14,11 @@ $tipoAbono = $_GET['tipoAbono'];
 
 
 $cantidadAbonada=$_GET['cantidadAbonada'];
-$selectCliente=$_GET['selectCliente'];
-$idCreditoAbono=$_GET['idCreditoAbono'];
-//$selectCliente=$_GET['selectCliente'];
-//$interes=$_GET['interes'];
-//$fechaVenc=$_GET['fechaVenc'];
-//$totalUnidades=$_GET['totalUnidades'];
-////$tipoVenta=0;
+$selectCliente=$_GET['selectClienteCred'];
+$idCreditoAbono=$_GET['inputNocred'];
 
-//var_dump('entra a ajax ABONO: $opcion: '.$opcion. ' / '.'$cantidadAbonada: '.$cantidadAbonada.'/'.'$selectCliente: '.$selectCliente. '/'.'$idCreditoAbono: '.$idCreditoAbono.'/'.'$selectCliente: '.$selectCliente.'/'.'$interes: '.$interes.'/'.'$fechaVenc: '.$fechaVenc);
+//var_dump($cantidadAbonada.'/'.$idCreditoAbono.'/'.$selectCliente);
 
-//$montoApagar = sumarPorcentaje($montoPrestamo,$interes);
-//$cantidadXpagar=$montoApagar-$pagoInicial;
 
 switch($opcion){
     case 1:
@@ -64,96 +57,25 @@ switch($opcion){
         values ('$getIdAbono','$idCreditoAbono','$montoDeudaActual')";
         $ejecQueryInsertAbono = $mysqli->query($queryInsertHistPagos) or die($mysqli->error);
 
+        if($montoDeudaActual == 0){
+            $queryFinalizarCred = "update detalle_credito set estatus_credito = 0 
+            where id_detalle_credito = '$idCreditoAbono'";
+            $ejecQueryFinaliCred =$mysqli->query($queryFinalizarCred) or die ($mysqli->error);
+
+
+        }
+
+
         if (!$mysqli->error){
             echo 1;
         }
 
-//        $queryExisteCredito="select id_detalle_credito from historial_pago_creditos where id_detalle_credito= '$idCreditoAbono'";
-//        $ejecQueryExisteCredito = $mysqli->query($queryExisteCredito) or die($mysqli->error);
-//        $existeCredito = $ejecQueryExisteCredito->num_rows;
-//
-//        if(empty($existeCredito)){
-//
-//        }
 
-
-
-
-//        $montoApagarAct = $montoAPagar - $cantidadAbonada;
-//
-//        $queryInsertHistCred = "insert into historial_credito (id_Abono,cantidad_por_pagar)
-//        values ('$idAbono','$montoApagarAct')";
-//        $ejecQueryHistCred = $mysqli->query($queryInsertHistCred) or die($mysqli->error);
-//
-//        $queryUpdateMontoApagar ="update credito set monto_a_pagar  ='$montoApagarAct' where id_credito ='$idCredito'";
-//        $ejecQueryMontoApagar = $mysqli->query($queryUpdateMontoApagar) or die($mysqli->error);
-
-
-        //var_dump('HACE NUEVOS QUERYS  y el error es:  ' .$mysqli->error . 'TERMINA EWRROR' );
-
-
-
-//        //se asigna el id venta de acuerdo al ultimo registro ingresado en tabla ventas
-//        $queryGetIdVenta = "select MAX(id_venta) as idVenta from ventas";
-//        $ejecQueryGetIdVenta = $mysqli->query($queryGetIdVenta) or die($mysqli->error);
-//        $arrayGetIdVenta = $ejecQueryGetIdVenta->fetch_assoc();
-//        $getIdVenta = $arrayGetIdVenta['idVenta'];
-//
-//
-//
-//
-//
-//        echo $rrr=$mysqli->query("insert into detalle_credito (
-//            fecha_inicio,
-//            dias_plazo,
-//            interes,
-//            fecha_vencimiento,
-//            monto_prestado,
-//            monto_total,
-//            cantidad_abonada,
-//            cantidad_por_pagar,
-//            id_cliente,
-//            fecha_registro,
-//            estatus_credito,
-//            id_venta,
-//            id_credito)
-//             values (
-//             '$fecha_alta',
-//             (SELECT DATEDIFF('$fechaVenc', '$fecha_alta')),
-//             '$interes',
-//             '$fechaVenc',
-//             '$montoPrestamo',
-//             '$montoApagar',
-//             '$pagoInicial',
-//             '$cantidadXpagar',
-//             '$selectCliente',
-//             '$fecha_registro',
-//             '$estatusCredito',
-//             '$getIdVenta',
-//             '$idCredito'
-//             )")or die ($mysqli->error);
 
     break;
     case 2:
-//
-//        $consulta =$mysqli->query(" select id_proov from proveedores where nombre = '$selectProvGasto' ") or die ($mysqli->error);
-//        $result = $consulta->fetch_assoc();
-//        $idProov=$result['id_proov'];
-//        //var_dump('$totalCompra: '.$totalCompra);
-//
-//        $rrr=$mysqli->query("
-//                update gastos
-//        set
-//         id_proov='$idProov',
-//         total ='$totalCompra'
-//         where id_nota_compra= '$idNotaCompra'
-//         ")or die($mysqli->error);
-//        var_dump('$mysqli->error: '.$mysqli->error);
-        break;
 
-//        $rrr=$mysqli->query("
-//               update gastos set total = '$totalCompra' where id_nota_compra ='$idNotaCompra';
-//         ")or die($mysqli->error);
+        break;
 
 
 }

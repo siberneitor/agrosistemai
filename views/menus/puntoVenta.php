@@ -1,7 +1,10 @@
 <?php
-include 'header.html';
-include 'modales/modalCobrar.php';
-include '../controllers/AJAX/valoresSelect.php';
+include '../sources.php';
+include '../header.php';
+include '../adds/modales/modalCobrar.php';
+include '../../controllers/AJAX/valoresSelect.php';
+include '../../controllers/variables.php';
+
 
 ?>
 
@@ -11,7 +14,8 @@ include '../controllers/AJAX/valoresSelect.php';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Punto Venta</title>
-        <link rel="shortcut icon" type="image/png" href="views/48.png" />
+<!--        <link rel="icon"  type="image/png" href="/images/iconoventa.png">-->
+<!--        <link rel="shortcut icon" type="image/png" href="/views/48.png" />-->
         <link rel="stylesheet" href="/css/puntoVenta.css">
         <script src="/js/puntoVenta.js"></script>
     </head>
@@ -26,14 +30,14 @@ include '../controllers/AJAX/valoresSelect.php';
 
                 <div class = "col-2">
                     <label class =" labelInputPV ">codigo</label>
-                    <input type="text" class="form-control input-sm" name="ttcodigo" id="ttcodigo" placeholder="codigo"autofocus>
+                    <input type="text" class="form-control input-sm" name="ttcodigo" id="ttcodigo" placeholder="codigo"autofocus autocomplete="off">
 
                 </div>
 
 
                 <div class = "col-1">
                     <label class ="labelInputPV">unidades: </label>
-                    <input type="number"  class="form-control input-sm" name="txtunidad" id="txtunidad" placeholder="unidades"autofocus value ="1"  >
+                    <input type="number"  class="form-control input-sm" name="txtunidad" id="txtunidad" placeholder="" autofocus value ="1"  >
 
                 </div>
 

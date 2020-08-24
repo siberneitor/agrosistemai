@@ -1,35 +1,34 @@
 
 $(document).ready(function() {
 
+	$('#divTbCredXuser').hide();
+
 	 //multiselect proveedor
-	$( '#selectCliente').multiselect({
+	$( '#selectClienteCred').multiselect({
 		numberDisplayed: 1,
 		enableFiltering: true,
 		enableCaseInsensitiveFiltering: true,
 		includeSelectAllOption: true,
 		selectAllJustVisible: false,
-		maxHeight: 400,
-		buttonContainer: '<div class="btn-group multiselect-container-" />',
+		maxHeight: 600,
+		buttonContainer: '<div class="btn-group multiselect-container" />',
 		nonSelectedText: 'TODOS',
 		filterPlaceholder: 'Buscar',
 		selectAllText: 'TODOS'
 	});
 
-	//evento para boton agregar abono
-	$('#btnaddAbono').click(function () {
-		var dataStringAbono = $('#formAbono').serialize();
-		agregarAbono(dataStringAbono);
-	});
+
 
 	//carga los datos de tabla abono
 	tablaAbono = $('#tbAbono').DataTable({
 		"ajax":{
-			"url": "../controllers/AJAX/tbAbono_datatable.php",
+			"url": "../../controllers/AJAX/tbAbono_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			//"data":{opcion:valorRadio}, //enviamos opcion 4 para que haga un SELECT
 			"dataSrc":""
 		},
 		"columns":[
+
 			{"data": "id_abono"},
 			{"data": "fechaAbono"},
 			{"data": "total"},
@@ -40,6 +39,110 @@ $(document).ready(function() {
 		"order": [[ 0, "desc" ]]
 	});
 
+
+
+
+
+
+//inicia seleccionar celda
+
+	//Editar
+
+	//termina seleccioanr celda
+
+	$('#selectClienteCred').change(function(){
+		//alert('ahi cambia');
+
+		$('#lblescojeCred').attr('hidden',false);
+
+		idClienteCred = $('#selectClienteCred').val();
+
+		$.ajax({
+			url:'/controllers/AJAX/valoresSelect.php',
+			type:'POST',
+			idClienteCred:idClienteCred,
+			success:function(x){
+
+
+
+
+				tbCredXuser = $('#tbCredXuser').DataTable({
+					"ajax":{
+						"url": "../../controllers/AJAX/tbCredXcliente_datatable.php",
+						"method": 'POST', //usamos el metodo POST
+						"data":{opcion:1,
+							idClienteCred:idClienteCred
+						}, //enviamos opcion 4 para que haga un SELECT
+						"dataSrc":""
+					},
+					"searching": false,
+					"bPaginate": false,
+					"bLengthChange": false,
+					"bInfo": false,
+					"columns":[
+
+						{"data": "idCredDC"},
+						{"data": "cantidadQdebe"}
+						// {"data": "creditosActivos"},
+						// {"data": "cantidadQdebe"},
+						// {"data": "totalAbonosXcred"},
+						// {"data": "cantidadPrestada"},
+						// {"data": "primerFechaVenc"},
+						// {"data": "ultimoAbono"},
+						// {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button></div></div>"}
+
+					],
+					"destroy": true
+				});
+
+
+				//$('#tbCredXuser tr')
+				$('#tbCredXuser tbody tr').addClass('btn btn-secondary active');
+				$('#divTbCredXuser').show();
+
+				$('#tbCredXuser tbody').on( 'click', 'tr', function () {
+					if ( $(this).hasClass('selected') ) {
+						//$(this).removeClass('selected');
+					}
+					else {
+						$('#divNoCred').attr('hidden',false);
+						$('#divDeuda').attr('hidden',false);
+						$('#divInputAbono').attr('hidden',false);
+						$('#btnaddAbono').attr('hidden',false);
+
+
+						fila = $(this).closest("tr");
+						noCredXcliente = fila.find('td:eq(0)').text();
+						deudaXcred = fila.find('td:eq(1)').text();
+
+						$('#inputNocred').val(noCredXcliente);
+						$('#inputDeuda').val(deudaXcred);
+						$('#divInputAbono').focus();
+
+						//tablaAbono.row('.selected').alert('ok');
+						//alert(noCredXcliente+'/'+deudaXcred);
+					}
+				});
+
+
+			},
+			error:function(primer,segundo,tercer){
+				console.log('primer');
+				console.log('segundo');
+				console.log('tercer');
+			}
+
+		});
+
+	});
+
+
+
+	//evento para boton agregar abono
+	$('#btnaddAbono').click(function () {
+		var dataStringAbono = $('#formAbono').serialize();
+		agregarAbono(dataStringAbono);
+	});
 
 	 $('#btnReporteGastos').click(function(evento){
 

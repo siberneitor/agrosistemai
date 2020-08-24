@@ -1,6 +1,6 @@
 <!--Modal para CRUD-->
 <?php
-include '../controllers/AJAX/valoresSelect.php';
+include '../../../controllers/AJAX/valoresSelect.php';
 ?>
 
 <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

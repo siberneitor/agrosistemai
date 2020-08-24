@@ -4,5 +4,20 @@
     color: #FFF;
     /*text-align: center;*/
     margin-left: 10px;
-    font-size: large;
+
+    /*height: 50px;*/
 }
+
+
+.lbTitulo{
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.lblUser{
+
+    font-size: 18px;
+}
+
+
+

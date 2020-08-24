@@ -8,7 +8,7 @@ $(document).ready(function() {
 	//carga los datos de tabla gastos
 	tablaGastos = $('#tbVentasR').DataTable({
 		"ajax":{
-			"url": "../controllers/AJAX/tbRventas_datatable.php",
+			"url": "../../controllers/AJAX/tbRventas_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			//"data":{opcion:'4'}, //enviamos opcion 4 para que haga un SELECT
 			"dataSrc":""
@@ -54,7 +54,7 @@ $(document).ready(function() {
 		obtenerValoresForm=$('#formReporteVentas').serialize();
 		console.log(obtenerValoresForm);
 		//window.open("../controllers/AJAX/exportarExcelPrueba.php?" +
-		window.open("../controllers/AJAX/exportarExcel_ajax.php?" +
+		window.open("../../controllers/AJAX/exportarExcel_ajax.php?" +
 			"idVentaR="+ idVentaR +
 			"&codigoR=" +codigoR +
 			"&nombreProdR=" +nombreProdR +

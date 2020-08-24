@@ -5,9 +5,7 @@
 function existenciaCodigoProducto($mysqli,$codigo){
     $consulta ="select codigo from producto where codigo ='$codigo'";
     $resultadoConsulta=$mysqli->query($consulta);
-    //$asocc = $resultadoConsulta->fetch_assoc();
     return $resultadoConsulta->num_rows;
-    //return $valor = $asocc['codigo'];
 }
 
 function existenciaCodigoInventario($mysqli,$codigo){
@@ -35,6 +33,13 @@ function suficientesUnidadesInv($mysqli,$codigo,$unidades){
     if($unidadesRestadas >= 0){
         return true;
     }
+}
+
+function existenciaCLiente($mysqli,$cliente){
+    $consulta ="select id_cliente from cliente where id_cliente ='$cliente'";
+    $resultadoConsulta=$mysqli->query($consulta);
+    return $resultadoConsulta->num_rows;
+
 }
 
 function estatusArticuloInventario($mysqli,$codigo){

@@ -67,6 +67,7 @@ $(document).ready(function() {
 
 
 	$('#btnAddProv').click(function () {
+
 		$('#formProv').validate({
 			rules: {
 				nombreProv: { required: true,
@@ -102,16 +103,14 @@ $(document).ready(function() {
 
 			},
 			submitHandler: function (form) {
+
+
 				var dataString = $('#formProv').serialize();
+				//alert('exitoso: '+dataString);
 				agregarProv(dataString);
 			}
 
 		});
-
-
-
-
-
 
 
 	});

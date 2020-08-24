@@ -18,6 +18,7 @@ $consulta =" select
         (select  MAX(fechaAbono) from abono where id_cliente =idCliente)  as ultimoAbono
 from cliente 
  JOIN detalle_credito  ON  cliente.id_cliente = detalle_credito.id_cliente
+ where cliente.id_cliente !=1
 ";
 
 switch($opcion){

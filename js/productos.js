@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 		//empieza
 
-			$('#formAddProv').validate({
+			$('#formAddProd').validate({
 				rules: {
 					addCod: { required: true,
 						number:true
@@ -109,7 +109,7 @@ $(document).ready(function() {
 		Fcad = $.trim($('#fecha_caducidad').val());
 		Unidades = $.trim($('#unidades').val());
 		$.ajax({
-			url:'../controllers/AJAX/agregarProducto_ajax.php',
+			url:'../../controllers/AJAX/agregarProducto_ajax.php',
 			type: "POST",
 			datatype:"json",
 			data:  {Codigo:Codigo, Art:Art, Costo:Costo, Precio:Precio, Provee:Provee, Fcad:Fcad ,Unidades:Unidades,opcion:opcion},
@@ -129,7 +129,7 @@ $(document).ready(function() {
 		var respuesta = confirm("¿Está seguro de borrar el registro "+user_id+"?");
 		if (respuesta) {
 			$.ajax({
-				url:'../controllers/AJAX/agregarProducto_ajax.php',
+				url:'../../controllers/AJAX/agregarProducto_ajax.php',
 				type: "POST",
 				datatype:"json",
 				data:  {opcion:opcion, user_id:user_id},
@@ -143,7 +143,7 @@ $(document).ready(function() {
 	//alert('it is ok');
 	tablaUsuarios = $('#tbAddProducto').DataTable({
 		"ajax":{
-			"url": "../controllers/AJAX/addProd_datatable.php",
+			"url": "../../controllers/AJAX/addProd_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			"data":{opcion:1}, //enviamos opcion 4 para que haga un SELECT
 			"dataSrc":""

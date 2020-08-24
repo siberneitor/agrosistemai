@@ -1,6 +1,23 @@
+<?php
+session_start();
+//$controlador = $_SESSION ["user"];
+if (!isset($_SESSION['user'])) {
+
+    header("Location: views/login.php");
+
+
+}else{
+    header('Location: /views/menus/principal.php');
+}
+?>
+
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="refresh" content="0;URL=views/puntoVenta.php">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="refresh" content="0;URL=views/puntoVenta.php">
+    <link rel="icon"  type="image/png" href="/images/iconoventa.png">
+</head>
+
 <!-- <a href="/views/puntoVenta.php">principio</a> -->
 <!--
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

@@ -14,9 +14,9 @@ $password = 'Mexico1.';
 
 //internet bd wwebhost
 //$hostname = 'localhost';
-//$database = 'id14191481_base1';
-//$username = 'id14191481_user1';
-//$password = 'Tb8UoG(jS6D)Z#QC';
+//$database = 'id14191481_sistemaventas';
+//$username = 'id14191481_ubuntu';
+//$password = 'Siberneitor1.';
 
 
 //se realiza la conexion

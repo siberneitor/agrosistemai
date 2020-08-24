@@ -16,7 +16,7 @@ $query= " select
         fecha_alta,
         credito_actual,
         estatus_credito_actual
-    from cliente   
+    from cliente where id_cliente !=1  
         ";
     $resultado= $mysqli->query($query);
     $data= $resultado -> fetch_all(MYSQLI_ASSOC);

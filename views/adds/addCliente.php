@@ -1,5 +1,6 @@
 <?php
-include 'header.html';
+include '../sources.php';
+include '../header.php';
 ?>
 <!DOCTYPE html>
 <html >
@@ -17,7 +18,7 @@ include 'header.html';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="tablaClientes.php">Listado de clientes</a>
+                <a class="btn btn-outline-secondary" href="/views/menus/tablaClientes.php">Listado de clientes</a>
             </li>
 
         </ul>
@@ -64,7 +65,7 @@ include 'header.html';
             <div class ="form-group row">
                 <label for ="telefono_Clien" class="col-sm-2 col-form-label">Telefono</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control input-sm" id ="telefono_Clien" name="telefono_Clien" placeholder="Telefono">
+                    <input type="tel" class="form-control input-sm" id ="telefono_Clien" name="telefono_Clien" placeholder="Telefono">
                 </div>
             </div>
             <div class ="form-group row">
@@ -73,9 +74,9 @@ include 'header.html';
                     <input type="text" class="form-control input-sm" id ="email_Clien" name="email_Clien" placeholder="Email">
                 </div>
             </div>
+            <button type ="submit" class="btn btn-success" id="btnaddclient">crear cliente</button>
 
         </form>
-        <button class="btn btn-success" id="btnaddclient">crear cliente</button>
 
     </div>
 </div>

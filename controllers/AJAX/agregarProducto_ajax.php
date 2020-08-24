@@ -1,6 +1,8 @@
 <?php
 //include 'conexion.php';
 include '../../database/conexioni.php';
+include '../funciones.php';
+
 
 
 
@@ -20,8 +22,14 @@ $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
 
 switch ($opcion){
     case 1:
-        echo $rrr=$mysqli->query("insert into producto (codigo,descripcion,id_proov) values ('$Cod','$Art','$Provee')") or die($mysqli->error);
 
+        if(existenciaCodigoProducto($mysqli,$Cod)) {
+
+            echo 'este codigo ya ha sido ingresado anteriormente';
+        }else{
+            echo $rrr = $mysqli->query("insert into producto (codigo,descripcion,id_proov) values ('$Cod','$Art','$Provee')") or die($mysqli->error);
+
+        }
         //al insertar un producto, automaticamemte se inserta tambien en la tabla inventario
         //echo $rrr=$mysqli->query("insert into inventario (codigo,fecha_ingreso,estatus) values ('$Cod','$fechaActual',0)") or die($mysqli->error);
 

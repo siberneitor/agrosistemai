@@ -1,5 +1,6 @@
 <?php
-include 'header.html';
+include '../sources.php';
+include '../header.php';
 
 ?>
 
@@ -18,7 +19,7 @@ include 'header.html';
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="btn btn-success" href="addAbono.php">Nuevo Abono</a>
+                    <a class="btn btn-success" href="/views/adds/addAbono.php">Nuevo Abono</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-secondary" href="creditos.php">listado de creditos</a>

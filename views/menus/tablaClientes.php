@@ -1,6 +1,7 @@
 <?php
-include 'header.html';
-include 'modales/modalAddClient.php';
+include '../sources.php';
+include '../header.php';
+include '../adds/modales/modalAddClient.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@ include 'modales/modalAddClient.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-success" href="agregarclienteS.php">Agregar Cliente</a>
+                <a class="btn btn-success" href="/views/adds/addCliente.php">Agregar Cliente</a>
             </li>
 
         </ul>

@@ -1,7 +1,9 @@
 <?php
-include 'header.html';
+include '../sources.php';
+include '../header.php';
 
-include '../controllers/AJAX/valoresSelect.php';
+include '../../controllers/AJAX/valoresSelect.php';
+include '../adds/modales/modalAddProvee.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,7 @@ include '../controllers/AJAX/valoresSelect.php';
 
 
     <script src="/js/productos.js"></script>
+    <script src="/js/proveedor.js"></script>
 
 </head>
 
@@ -23,10 +26,10 @@ include '../controllers/AJAX/valoresSelect.php';
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="btn btn-outline-secondary" href="tablaProd.php">listado productos</a>
+                    <a class="btn btn-outline-secondary" href="/views/menus/tablaProd.php">listado productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class= "btn btn-outline-success" href="tablaInventario.php">Agregar A inventario</a>
+                    <a class= "btn btn-outline-success" href="/views/menus/tablaInventario.php">Agregar A inventario</a>
                 </li>
                 <!--            <li class="nav-item">-->
                 <!--                <a class= "btn btn-info" href="agregarProv.php">generar reporte</a>-->
@@ -37,7 +40,7 @@ include '../controllers/AJAX/valoresSelect.php';
     <br>
     <div class ="form-group ">
 
-        <form id="formAddProv"  method="post" accept-charset="utf-8" class="form-horizontal">
+        <form id="formAddProd"  method="post" accept-charset="utf-8" class="form-horizontal">
 
             <div class ="form-group row">
 
@@ -83,7 +86,8 @@ include '../controllers/AJAX/valoresSelect.php';
                 </select>
 
             </div>
-                <a href="agregarProv.php">agregar Proveedor</a>
+<!--                <a href="agregarProv.php">agregar Proveedor</a>-->
+                <a  data-toggle="modal" data-target="#modalAddProvee" href="">agregar Proveedor</a>
             </div>
 
 
@@ -103,6 +107,8 @@ include '../controllers/AJAX/valoresSelect.php';
 
     </div>
 </div>
+
+
 </body>
 
 </html>

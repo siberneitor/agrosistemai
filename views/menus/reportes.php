@@ -1,32 +1,33 @@
 <?php
+include '../sources.php';
+include '../header.php';
 
-include '../controllers/AJAX/valoresSelect.php';
-include '../controllers/variables.php';
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ventas</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reportes</title>
+    <link rel="stylesheet" href="/css/reportes.css">
+    <script src="/js/reportes.js"></script>
     <script src="/js/ganancias.js"></script>
+    <script src="/js/gastos.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar bg-light">
+<!--  <button id ="btnExportar">EXPORTAR</button> -->
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="" id ="linkRventas">Reporte de Ventas</a>
-            </li>
-
-        </ul>
+<nav class="divInputs">
+    <div class="distanciaInput">
+        <button id ="btnRventasVerde" class="btn btn-outline-success" type="button">ventas</button>
     </div>
+    <div class="distanciaInput">
+        <button id ="btnGastos" class="btn btn-outline-success" type="button">gastos</button>
+    </div>
+
 </nav>
-
-
-
-
-<nav class="navbar navbar-expand-lg navbar bg-light" id ="filtrosVentas" style="display: none">
+<nav class="navbar navbar-expand-lg navbar bg-light" id ="filtrosVentas" >
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
@@ -84,9 +85,9 @@ include '../controllers/variables.php';
                         <p></p>
                     </div>
                     <div class ="col-1 row">
-                    <button id = "btnRventas" class = "btn btn-secondary btn-sm" style=" margin-top: 45px;height: 40px">Generar Reporte</button>
+                        <button id = "btnRventas" class = "btn btn-secondary btn-sm" style=" margin-top: 45px;height: 40px">Generar Reporte</button>
                     </div>
-                    </div>
+                </div>
 
             </form>
 
@@ -94,24 +95,49 @@ include '../controllers/variables.php';
     </div>
 </nav>
 
+<!--SEPARACIONB -->
+
+<nav class="navbar navbar-expand-lg navbar bg-light" id ="filtrosGastos" style="display: none">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <div class = "col-1">
+                <label>Filtrar por: </label>
+            </div>
 
 
-<table id ="tbVentasR" class ="container-fluid">
-    <thead class="text-center">
-    <tr>
-        <th>NO. Venta</th>
-        <th>Tipo Venta</th>
-        <th>Unidades</th>
-        <th>Total</th>
-        <th>Pago con:</th>
-        <th>Cambio</th>
-        <th>No. CLiente</th>
-        <th>Fecha Venta</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+            <!--                <a class="nav-link" href="addGastos.php">Agregar Gasto</a>-->
+            <div class = "col-2">
+                <input type="text" id="idNotaCompraF" class ="form-control" placeholder="No. nota compra">
+            </div>
+
+            <!--                <a class="nav-link" href="">reporte Gastos</a>-->
+            <div class = "col-2">
+                <!-- input solo para mostrarse-->
+                <input type = "text" class="form-control input-sm" id="" name="" placeholder = "proveedor">
+
+            </div>
+
+            <div class = "col-2">
+                <input type="text" id ="totalR" class ="form-control" placeholder="total">
+            </div>
+
+
+            <div class = "col-3">
+                <input type="date" id ="fIncialRG" class ="form-control" placeholder="fecha inicial" value="<?php echo $fechaActual ?>" >
+                <input type="date" id ="fFinalRG" class ="form-control" placeholder="fecha final" value="<?php echo $fechaActual ?>">
+            </div>
+
+
+
+            <div class = "col-4">
+                <button  type="button" id="btnReporteGastos" class="btn btn-outline-success">generar Reporte</button>
+            </div>
+
+
+        </ul>
+    </div>
+</nav>
 </body>
-
 </html>
+

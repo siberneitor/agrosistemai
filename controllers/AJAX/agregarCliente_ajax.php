@@ -1,11 +1,11 @@
 <?php
-//include 'conexion.php';
-include '../../database/conexioni.php';
 
-//var_dump('entra a ajax proveedor');
+include '../../database/conexioni.php';
+include '../funciones.php';
+
+
 
 $opcion = $_GET['opcion'];
-
 
 $nombreCliente=$_GET['nombreCliente'];
 	$apPat=$_GET['ap_pat'];
@@ -16,7 +16,6 @@ $nombreCliente=$_GET['nombreCliente'];
 	$email_clien=$_GET['email_Clien'];
 
 	$fecha_alta = date("Y-m-d H:i:s");
-
 
 
 $id_cliente=$_GET['id_cliente'];
@@ -34,6 +33,7 @@ $cliente_id=$_GET['cliente_id'];
 
 switch($opcion){
     case 1:
+
         echo $rrr=$mysqli->query("insert into cliente values (NULL,'$nombreCliente','$apPat','$apMat','$domicil_clien','$localidad_clien','$telef_clien','$email_clien','$fecha_alta',NULL,NULL,NULL)");
 
 

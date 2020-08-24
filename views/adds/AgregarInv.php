@@ -1,6 +1,7 @@
 <?php
-include 'header.html';
-include '../controllers/variables.php';
+include '../sources.php';
+include '../header.php';
+include '../../controllers/variables.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,13 +22,13 @@ include '../controllers/variables.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="tablaInventario.php">listado Inventario</a>
+                <a class="btn btn-outline-secondary" href="/views/menus/tablaInventario.php">listado Inventario</a>
             </li>
         </ul>
     </div>
 </nav>
 <div class = "content">
-    <a href="tablaInventario.php">lista inventario</a>
+<!--    <a href="tablaInventario.php">lista inventario</a>-->
     <div class ="form-group">
 
         <form id="formAddInv"  method="post" accept-charset="utf-8" class="form-horizontal">

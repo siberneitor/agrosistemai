@@ -1,6 +1,6 @@
-<html>
-<head>
+
     <!--jquery -->
+    <link rel="icon"  type="image/png" href="/images/iconoventa.png">
     <script src="/librerias/jquery-3.2.1.min.js"></script>
 
     <!--PROPPER -->
@@ -43,46 +43,3 @@
 
     <!--archivos CSS propios -->
     <link rel="stylesheet" href="/css/main.css">
-
-
-
-
-</head>
-<body>
-<header >
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto ">
-                <li class="nav-item">
-                    <a class="nav-link" href="puntoVenta.php">Punto-Venta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tablaProd.php">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tablaInventario.php">inventario</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tablaClientes.php">Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="creditos.php">Creditos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reportes.php">Reportes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="administracion.php">Administracion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class = "row">
-        <div class = "col-lg-12 labelPVtitulo">
-            <label id ="titulos"></label>
-        </div>
-    </div>
-</header>
-</body>
-</html>

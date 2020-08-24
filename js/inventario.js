@@ -90,7 +90,7 @@ $(document).ready(function() {
 		Fprecio = $.trim($('#Fprecio').val());
 		Fcad = $.trim($('#Fcad').val());
 		$.ajax({
-			url:'../controllers/AJAX/agregarInventario_ajax.php',
+			url:'../../controllers/AJAX/agregarInventario_ajax.php',
 			type: "POST",
 			datatype:"json",
 			data:  {Fcodigo:Fcodigo, Fdescripcion:Fdescripcion, addUnidInv:Funidades, addCostoInv:Fcosto, addPrecioInv:Fprecio, addFcad:Fcad ,opcion:opcion, statusInv:statusInv},
@@ -111,7 +111,7 @@ $(document).ready(function() {
 		var respuesta = confirm("¿Está seguro de borrar el registro "+user_id+"?");
 		if (respuesta) {
 			$.ajax({
-				url:'../controllers/AJAX/agregarInventario_ajax.php',
+				url:'../../controllers/AJAX/agregarInventario_ajax.php',
 				type: "POST",
 				datatype:"json",
 				data:  {opcion:opcion, user_id:user_id},
@@ -128,7 +128,7 @@ $(document).ready(function() {
 	tablaInventario = $('#tbAddInv').DataTable({
 		"ajax":{
 			//"url": "../controllers/AJAX/addProd_controller.php",
-			"url": "../controllers/AJAX/addInv_datatable.php",
+			"url": "../../controllers/AJAX/addInv_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			"data":{opcion:'1'}, //enviamos opcion 4 para que haga un SELECT
 			"dataSrc":""

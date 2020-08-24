@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 
 	//multiselect proveedor
-	$( '#selectProvGasto,#selectProvRG').multiselect({
+	$( '#selectProvRG').multiselect({
 		numberDisplayed: 1,
 		enableFiltering: true,
 		enableCaseInsensitiveFiltering: true,
@@ -22,7 +22,7 @@ $(document).ready(function() {
 	//carga los datos de tabla gastos
 	tablaGastos = $('#tbGastos').DataTable({
 		"ajax":{
-			"url": "../controllers/AJAX/tbGastos_datatable.php",
+			"url": "../../controllers/AJAX/tbGastos_datatable.php",
 			"method": 'POST', //usamos el metodo POST
 			//"data":{opcion:'4'}, //enviamos opcion 4 para que haga un SELECT
 			"dataSrc":""
@@ -56,6 +56,14 @@ $(document).ready(function() {
 		$('#addGasto').toggle("slow");
 	});
 
+	$('#btnaddGasto').click(function(e){
+		e.preventDefault()
+		//alert('llega1');
+		datosGastos = $('#formAddGasto').serialize();
+
+			agregarGasto(datosGastos);
+	});
+
 
 
 	$('#btnReporteGastos').click(function(evento){
@@ -71,7 +79,7 @@ $(document).ready(function() {
 		fFinalRG = $('#fFinalRG').val();
 
 		//console.log(fIncialRG);
-		window.open("../controllers/AJAX/reporteGastos_ajax.php?" +
+		window.open("../../controllers/AJAX/reporteGastos_ajax.php?" +
 			"idNotaCompraF="+ idNotaCompraF +
 			"&selectProvGasto=" +selectProvGasto +
 			"&totalR=" +totalR+

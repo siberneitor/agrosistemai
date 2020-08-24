@@ -1,8 +1,9 @@
 <?php
-//include 'header.html';
+//include 'header.php';
 
-include '../controllers/AJAX/valoresSelect.php';
-include '../controllers/variables.php';
+include '../../controllers/AJAX/valoresSelect.php';
+include '../../controllers/variables.php';
+include '../adds/modales/modalAddProvee.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,7 +55,7 @@ include '../controllers/variables.php';
                         }
                         ?>
                     </select>
-                    <a href="agregarProv.php">agregar Proveedor</a>
+                    <a data-toggle="modal" data-target="#modalAddProvee" href="" href="">agregar Proveedor</a>
                 </div>
 
 

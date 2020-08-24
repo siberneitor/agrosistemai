@@ -1,7 +1,8 @@
 <?php
-include 'header.html';
+include '../sources.php';
+include '../header.php';
 
-include '../controllers/AJAX/valoresSelect.php';
+include '../../controllers/AJAX/valoresSelect.php';
 ?>
 <!DOCTYPE html>
 <html >

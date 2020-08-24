@@ -1,5 +1,6 @@
 <?php
-include 'header.html';
+include '../sources.php';
+include '../header.php';
 
 
 ?>
@@ -22,7 +23,7 @@ include 'header.html';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="tablaProd.php">listado productos</a>
+                <a class="btn btn-outline-secondary" href="/views/menus/tablaProd.php">listado productos</a>
             </li>
 
         </ul>

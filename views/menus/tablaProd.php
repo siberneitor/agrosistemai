@@ -1,6 +1,8 @@
 <?php
-include 'header.html';
-include 'modales/modalAddProd.php';
+include '../sources.php';
+include '../header.php';
+include '../adds/modales/modalAddProd.php';
+include '../adds/modales/modalAddProvee.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,10 +21,10 @@ include 'modales/modalAddProd.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-success" href="AgregarProducto.php">Agregar Producto</a>
+                <a class="btn btn-success" href="/views/adds/AgregarProducto.php">Agregar Producto</a>
             </li>
             <li class="nav-item">
-                <a class= "btn btn-outline-secondary" href="agregarProv.php">Agregar Proveedor</a>
+                <a data-toggle="modal" data-target="#modalAddProvee" class= "btn btn-outline-secondary" href="">Agregar Proveedor</a>
             </li>
 <!--            <li class="nav-item">-->
 <!--                <a class= "btn btn-info" href="agregarProv.php">generar reporte</a>-->

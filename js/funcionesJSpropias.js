@@ -5,15 +5,11 @@ alertify.set('notifier','position', 'top-right');
 alertify.set('notifier','delay', 3);
 
 function buscarcod($cod,$unidades){
-
-	//txtUnidades = $('#txtunidad').val();
-
 	cadena={codigo:$cod,
 		Unidades: $unidades
 	}
 	 $.ajax({
   		url:'/controllers/buscaCod_controller.php',
-  		//url:'/controllers/restarunidadesInput.php',
   		type:'POST',
   		data:cadena,
   		success:function(resultado){
@@ -30,7 +26,6 @@ function buscarcod($cod,$unidades){
 				$totalXcod=dividirResultado[6];
 				unidadesTempInv = dividirResultado[7];
 
-
   		},
   		fail:function(resultado){
 			//console.log('entra a fail y el resultado es: '+resultado);
@@ -40,19 +35,12 @@ function buscarcod($cod,$unidades){
 
   			//validacion para saber si encontro resultado o no
   			if(bool == false) {
-  				//mensajeError =  dividirResultado[1];
-				//alert('el resultado ajax es false y el mensaje error es: '+mensajeError);
-				//alert(mensajeError);
-
-				//alertify.error(mensajeError);
 
 				alertify.error(mensajeError);
 
-  				//alert('el codigo ingresado no aparece en el inventario 	');
   				inputCodigo=$("#ttcodigo").val('');
 				$('#txtunidad').val(1);
   			}else{
-
 
 				unidadesInputint=parseInt(unidadesInput);
 				totalUnidades= totalUnidades + unidadesInputint;
@@ -109,23 +97,21 @@ function agregarProducto($codigo,$articulo,$provee){
 
 	$.ajax({
 		type:'POST',
-		url:'../controllers/AJAX/agregarProducto_ajax.php',
+		url:'/controllers/AJAX/agregarProducto_ajax.php',
 		data:cadena,
 		success:function(x){
-			console.log('entro a success');
-
-			console.log(x);
 
 			if (x!=1){
-				alert('error al insertar');
+				alertify.error(x);
 			}else{
 				$('.divR').load('tablaAgregarProducto.php');
-				alert("insertado correctamente 1");
+				alertify.success("producto agregado correctamente");
+
 			}
 
 		},
 		error:function(jqXHR,estado,error){
-			console.log('entro a error');
+			console.log(jqXHR);
 			console.log(estado);
 			console.log(error);
 		},
@@ -159,7 +145,7 @@ function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$fadd
 
 	$.ajax({
 		type:'POST',
-		url:'../controllers/AJAX/agregarInventario_ajax.php',
+		url:'/controllers/AJAX/agregarInventario_ajax.php',
 		data:cadena,
 		success:function(respuesta){
 			console.log('entro a success');
@@ -197,7 +183,7 @@ function agregarProv($cadena){
 	$.ajax({
 		type:'GET',
 		data:$cadena,
-		url:'../controllers/AJAX/agregarProveedor_ajax.php',
+		url:'/controllers/AJAX/agregarProveedor_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
@@ -208,6 +194,9 @@ function agregarProv($cadena){
 
 			}else{
 				alertify.success('el proveedor se guardo con exito');
+				$('#formProv')[0].reset();
+				$('#selectProv').multiselect('refresh');
+
 			}
 
 
@@ -232,16 +221,16 @@ function agregarCLiente($valores){
 	$.ajax({
 		type:'GET',
 		data:$valores,
-		url:'../controllers/AJAX/agregarCliente_ajax.php',
+		url:'/controllers/AJAX/agregarCliente_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
 			console.log(r);
 
 			if (r !=1){
-				alert('hubo un error y el cliente no pudo ser guardado');
+				alertify.error('hubo un error y el cliente no pudo ser guardado');
 			}else{
-				alert('el cliente se guardo con exito');
+				alertify.success('el cliente se guardo con exito');
 				$('#formcliente')[0].reset();
 				//$("#idformulario")[0].reset();
 
@@ -322,7 +311,7 @@ function cobrar(){
 
 	$.ajax({
 		//url:'f5.php',
-		url:'../controllers/procesarVenta_controller.php',
+		url:'/controllers/procesarVenta_controller.php',
 		type:'POST',
 		data:datos,
 		success:function(x){
@@ -333,7 +322,7 @@ function cobrar(){
 				agregarCredito(cadenaValores);
 			}
 			$("#myModal").modal("hide");
-			alertify.success('la venta fue correcta')
+			alertify.success('la venta fue correcta');
 			$("#formModalCobrar").each(function() { this.selectedIndex = 0 });
 
 		},
@@ -408,7 +397,7 @@ function mostrarTablaAlertaInv(){
 	//console.log('SE EJECUTA FUNCION MOSRAR TABLA ALERT DIV');
 	$('#divTabAlertInv').hide();
 	$peticionAjax =$.ajax({
-		url: '../controllers/AJAX/addInv_datatable.php',
+		url: '../../controllers/AJAX/addInv_datatable.php',
 		type: "POST",
 		data: {opcion: 2},
 		success: function (datos){
@@ -417,7 +406,7 @@ function mostrarTablaAlertaInv(){
 				var tablaAlertInv = $('#tbAlertaInv').DataTable({
 					"ajax":{
 						//"url": "../controllers/AJAX/addProd_controller.php",
-						"url": "../controllers/AJAX/addInv_datatable.php",
+						"url": "../../controllers/AJAX/addInv_datatable.php",
 						"method": 'POST', //usamos el metodo POST
 						"data":{opcion:'2'}, //enviamos opcion 4 para que haga un SELECT
 						"dataSrc":""
@@ -462,7 +451,7 @@ function mostrarTablaAlertaProducto(){
 	//console.log('SE EJECUTA FUNCION MOSRAR TABLA ALERTA PRODUCTO');
 	$('#divTabAlertProducto').hide();
 	$peticionAjax =$.ajax({
-		url: '../controllers/AJAX/addProd_datatable.php',
+		url: '../../controllers/AJAX/addProd_datatable.php',
 		type: "POST",
 		data: {opcion: 2},
 		success: function (datos){
@@ -470,7 +459,7 @@ function mostrarTablaAlertaProducto(){
 				var tablaAlertProducto = $('#tbAlertaProducto').DataTable({
 					"ajax":{
 						//"url": "../controllers/AJAX/addProd_controller.php",
-						"url": "../controllers/AJAX/addProd_datatable.php",
+						"url": "../../controllers/AJAX/addProd_datatable.php",
 						"method": 'POST', //usamos el metodo POST
 						"data":{opcion:'2'}, //enviamos opcion 4 para que haga un SELECT
 						"dataSrc":""
@@ -514,20 +503,21 @@ function agregarGasto($valores){
 	$.ajax({
 		type:'GET',
 		data:$valores,
-		url:'../controllers/AJAX/agregarGasto_ajax.php',
+		url:'/controllers/AJAX/agregarGasto_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
 			//console.log(r);
 
 			if (r !=1){
-				alert('hubo un error y la compra no pudo ser guardada');
+				alertify.error('hubo un error y la compra no pudo ser guardada');
 			}else{
-				alert('la compra ha sido guardada con exito');
+				alertify.success('la compra ha sido guardada con exito');
 				$('#idNotaCompra').val('');
 				$('#totalCompra').val('');
 				$('#selectProvGasto').val(0);
 				$('#selectProvGasto').multiselect('refresh');
+				tablaGastos.ajax.reload(null, false);
 			}
 
 
@@ -550,7 +540,7 @@ function agregarCredito($valores){
 	$.ajax({
 		type:'GET',
 		data:$valores,
-		url:'../controllers/AJAX/agregarCredito_ajax.php',
+		url:'/controllers/AJAX/agregarCredito_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
@@ -579,32 +569,77 @@ function agregarAbono(valores){
 	$.ajax({
 		type:'GET',
 		data:valores,
-		url:'../controllers/AJAX/agregarAbono_ajax.php',
+		url:'/controllers/AJAX/agregarAbono_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
 			console.log(r);
-
 			if (r !=1){
 				alert('hubo un error y el abono no pudo ser guardado');
 			}else{
-				alert('el abono ha sido registrado con exito');
-				$('#cantidadAbonada').val('');
-				$('#idCreditoAbono').val('');
+				$('#formAbono')[0].reset();
 				$('#selectCliente').val(0);
 				$('#selectCliente').multiselect('refresh');
+				alert('el abono ha sido registrado con exito');
+				alertify.success('el abono ha sido registrado con exito');
 			}
 		},
-		error:function(r,rr,rrr){
-			console.log(r);
-			console.log(rr);
-			console.log(rrr);
+		error:function(err){
+			console.log(err);
 		},
 		complete:function(){
+		}
+	});
+}
+
+function tablaCredXclient (d) {
+
+	return '<table id ="tbCredXuser2"  class ="" style="padding-left:50px;">'+
+		'<thead>'+
+		'<tr>'+
+		'<th>No Credito</th>'+
+		'<th>cantidad que debe</th>'+
+		'<th>f vencimiento</th>'+
+		'<th>monto total de credito</th>'+
+		'<th>deuda inicial</th>'+
+		'<th>interes</th>'+
+		'<th>pago inicial</th>'+
+		'<th>monto abonado</th>'+
+		'<th>fecha inicio credito</th>'+
+		'<th>no de venta</th>'+
+		'<th></th>'+
+		'</tr>'+
+		'</thead>'+
+		'<tbody>'+
+		'</tbody>'+
+		'</table>';
+}
+
+function tablaBalance(fechaInicial,fechaFinal){
+	TABLA =0;
+	fechas = {fechaInicial:fechaInicial,
+		fechaFinal:fechaFinal
+	}
+
+	$.ajax({
+		url:'/controllers/AJAX/balance_ajax.php',
+		type:'GET',
+		data:fechas,
+		success:function(tabla){
+			//console.log(tabla);
+			$('#divBalance').html(tabla);
+
+
+		},
+		error:function(error1,error2,error3){
+			console.log(error1);
+			console.log(error2);
+			console.log(error3);
+		},
+		complete: function(){
 
 		}
 	});
-
 }
 
 
