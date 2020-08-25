@@ -23,8 +23,9 @@ $consulta =" select detalle_credito.id_detalle_credito as idCredDC,
          (SELECT IFNULL( (select cantidadInicial - sum(a.total)),cantidadInicial)) AS cantidadQdebe
 from detalle_credito
 left join abono a on detalle_credito.id_detalle_credito = a.id_detalle_credito 
-where detalle_credito.id_cliente = '$idClienteCred' 
+where detalle_credito.id_cliente = '$idClienteCred'
 group by detalle_credito.id_detalle_credito, detalle_credito.id_cliente, a.id_detalle_credito
+having cantidadQdebe > 0
 
 
 ";

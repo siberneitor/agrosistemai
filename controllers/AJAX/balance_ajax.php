@@ -4,6 +4,8 @@ include '../../database/conexioni.php';
 $fechaInicial = $_GET['fechaInicial'];
 $fechaFinal = $_GET['fechaFinal'];
 
+$fechaInicialCompleta = $fechaInicial.' '.'00:00:00';
+$fechaFinalCompleta = $fechaFinal.' '.'23:59:59';
 //echo $fechaInicial.'/'.$fechaFinal;
 
 $queryTbBlance ="
@@ -13,15 +15,15 @@ select count(ventas.id_venta) as CantidadVentas,
        (select sum(i.precio - i.costo)) as gananciaXventas,
        SUM(ventas.total_unidades) as total_unidades,
        (select sum(abono.total)
-        from abono where fechaAbono between '$fechaInicial' and '$fechaFinal'
+        from abono where fechaAbono between '$fechaInicialCompleta' and '$fechaFinalCompleta'
                  ) as totalAbonos,
        (select COUNT(monto_por_pagar) from historial_pago_creditos
   join abono on historial_pago_creditos.id_abono = abono.id_abono
- and monto_por_pagar = 0 AND fechaAbono between '$fechaInicial' and '$fechaFinal') as creditosFinalizados
+ and monto_por_pagar = 0 AND fechaAbono between '$fechaInicialCompleta' and '$fechaFinalCompleta') as creditosFinalizados
 from ventas
          join detalle_venta d on ventas.id_venta = d.id_venta
          join inventario i on d.codigo = i.codigo
-where ventas.tipo_venta =1  and ventas.fecha_venta between '$fechaInicial' and '$fechaFinal'
+where ventas.tipo_venta =1  and ventas.fecha_venta between '$fechaInicialCompleta' and '$fechaFinalCompleta'
 
 ";
 

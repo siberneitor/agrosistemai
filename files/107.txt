@@ -1,0 +1,16 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+Huitzuco Guerrero
+tel: 7271028618
+NO. ticket :107
+no. cliente:1
+Tipo de venta:contado
+25-08-2020   17:29:10
+
+cantidad      codigo       articulo         precio    total
+1         2      galletas mexicanas            8.00        8.00
+
+                  TOTAL :        8
+efectivo :9
+Cambio :1
+Cantidad de productos :1
