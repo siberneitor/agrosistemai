@@ -7,15 +7,16 @@ if (!isset($_SESSION['user'])) {
 
 
 }else{
-    header('Location: /views/menus/principal.php');
+    header('Location: views/menus/principal.php');
 }
 ?>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="refresh" content="0;URL=views/puntoVenta.php">
-    <link rel="icon"  type="image/png" href="/images/iconoventa.png">
+<!--    <meta http-equiv="refresh" content="0;URL=views/puntoVenta.php">-->
+<!--    <meta http-equiv="refresh" content="0;URL=views/login.php">-->
+    <link rel="icon"  type="image/png" href="images/iconoventa.png">
 </head>
 
 <!-- <a href="/views/puntoVenta.php">principio</a> -->

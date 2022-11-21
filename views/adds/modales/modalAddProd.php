@@ -1,6 +1,8 @@
 <!--Modal para CRUD-->
 <?php
-include '../../../controllers/AJAX/valoresSelect.php';
+//include '../../../controllers/AJAX/valoresSelect.php';
+//include '/agrosistemai/controllers/AJAX/valoresSelect.php';
+include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.php");
 ?>
 
 <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -30,56 +32,54 @@ include '../../../controllers/AJAX/valoresSelect.php';
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="costo" class="col-form-label">Costo</label>
-                                <input type="text" class="form-control" id="costo">
+                                <label for="marca" class="col-form-label">Marca:</label>
+                                <input type="text" class="form-control" id="marca">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="precio" class="col-form-label">Precio</label>
-                                <input type="text" class="form-control" id="precio">
+                                <label for="categoria" class="col-form-label">Categoria</label>
+                                <input type="text" class="form-control" id="categoria">
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="selectProv" class="col-form-label">proveedor:</label>
-
-                                    <input type="text" class="form-control" id="proveedor">
-
-
+                                <label for="proveedor" class="col-form-label">proveedor:</label>
+                                <input type="text" class="form-control" id="proveedor">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="fecha_caducidad" class="col-form-label">fecha_cad</label>
-                                <input type="date" class="form-control" id="fecha_caducidad">
+                                <input type="date" class="form-control" id="fecha_caducidad" disabled>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="costo" class="col-form-label">Costo</label>
+                                    <input type="text" class="form-control" id="costo" >
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="precio" class="col-form-label">Precio</label>
+                                    <input type="text" class="form-control" id="precio" >
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="selectProv" class="col-form-label">Unidades:</label>
-
-                                <input type="text" class="form-control" id="unidades">
-
-
+                                <input type="text" class="form-control" id="unidades"
+                                >
                             </div>
                         </div>
-
                     </div>
-
-
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>

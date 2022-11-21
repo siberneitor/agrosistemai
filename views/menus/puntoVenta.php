@@ -1,11 +1,9 @@
 <?php
-include '../sources.php';
 include '../header.php';
 include '../adds/modales/modalCobrar.php';
+include '../adds/modales/modalQuitar.php';
 include '../../controllers/AJAX/valoresSelect.php';
 include '../../controllers/variables.php';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +14,8 @@ include '../../controllers/variables.php';
         <title>Punto Venta</title>
 <!--        <link rel="icon"  type="image/png" href="/images/iconoventa.png">-->
 <!--        <link rel="shortcut icon" type="image/png" href="/views/48.png" />-->
-        <link rel="stylesheet" href="/css/puntoVenta.css">
-        <script src="/js/puntoVenta.js"></script>
+        <link rel="stylesheet" href="../../css/puntoVenta.css">
+        <script src="../../js/puntoVenta.js"></script>
     </head>
     <body>
 
@@ -30,7 +28,8 @@ include '../../controllers/variables.php';
 
                 <div class = "col-2">
                     <label class =" labelInputPV ">codigo</label>
-                    <input type="text" class="form-control input-sm" name="ttcodigo" id="ttcodigo" placeholder="codigo"autofocus autocomplete="off">
+<!--                    <label class =" labelInputPV ">--><?php //echo getcwd() ?><!--</label>-->
+                    <input type="text" class="form-control input-sm" name="ttcodigo" id="ttcodigo" placeholder="codigo" autocomplete="off">
 
                 </div>
 
@@ -41,28 +40,28 @@ include '../../controllers/variables.php';
 
                 </div>
 
-                <!--                <a class="nav-link" href="">reporte Gastos</a>-->
-                <div class = "col-1">
-                    <label for="selectClienteVentas" class ="labelInputPV">Cliente:</label>
-                    <select  id="selectClienteVentas" name="selectClienteVentas">
-                        <option value="1" selected>-   Sin Cliente    -</option>
-                        <?php
-                        while ($filasCLientes = $resultGetClientes->fetch_assoc()){
-                            $idCLiente= $filasCLientes["id_cliente"];
-                            $nombreCLiente= $filasCLientes["nombre"];
-                            $ap_pat= $filasCLientes["apellido_paterno"];
-                            $ap_mat= $filasCLientes["apellido_materno"];
-
-                            echo '<option value="'.$idCLiente.'">'.$ap_pat." ".$ap_mat." ".$nombreCLiente.'</option>';
-                        }
-                        ?>
-                    </select>
-
-                </div>
+<!--                <div class = "col-1">-->
+<!--                    <label for="selectClienteVentas" class ="labelInputPV">Cliente:</label>-->
+<!--                    <select  id="selectClienteVentas" name="selectClienteVentas">-->
+<!--                        <option value="1" selected>-   Sin Cliente    -</option>-->
+<!--                        --><?php
+//                        while ($filasCLientes = $resultGetClientes->fetch_assoc()){
+//                            $idCLiente= $filasCLientes["id_cliente"];
+//                            $nombreCLiente= $filasCLientes["nombre"];
+//                            $ap_pat= $filasCLientes["apellido_paterno"];
+//                            $ap_mat= $filasCLientes["apellido_materno"];
+//
+//                            echo '<option value="'.$idCLiente.'">'.$ap_pat." ".$ap_mat." ".$nombreCLiente.'</option>';
+//                        }
+//                        ?>
+<!--                    </select>-->
+<!--                </div>-->
 
                 <div class = "col-1">
-                    <div class="divTotalArt">
+                    <div class="divTotalArt form-inline">
                         <label id ="labelTotalArt" class="labelTotalArt"></label>
+<!--                        <input type = "text" readolny class="form-control-plaintext" id ="totalArt" value ="">-->
+                        <input type ="hidden" id="totalArt">
                     </div>
                 </div>
 
@@ -90,9 +89,17 @@ include '../../controllers/variables.php';
                     <button id="btnadd" class="btn btn-outline-primary input-sm">añadir (int)</button>
                     <div id ="divTotal" class="divTotal">
                         <label><h1></h1></label>
-<!--                        <label id="labelTotalArt" class ="totalArt"></label>-->
+                        <input type = "text" readolny class="form-control-plaintext" id ="cantTotal" value ="">
+
+<!--                        <input type ="hidden" id="cantTotal">-->
+
                     </div>
                 </div>
+<!--            <div class = "col-1">-->
+<!--                <label></label>-->
+<!--                <button id="btnQuitar" class="btn btn-outline-warning input-sm">Quitar (f4)</button>-->
+<!---->
+<!--            </div>-->
                 <div class = "col-1">
                     <label></label>
                     <button id="btnborrar" class="btn btn-outline-danger input-sm">cancel (f8)</button>

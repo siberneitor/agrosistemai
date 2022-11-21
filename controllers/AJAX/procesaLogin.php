@@ -22,8 +22,10 @@ $passBdDecod = base64_decode($passBD);
 if(isset($inputUser) && !empty($inputUser) && $inputUser===$userBD && isset($inputPassword) && !empty($inputPassword) && $inputPassword===$passBdDecod){
 
      $_SESSION['user'] = $inputUser;
+//     var_dump('BIEN');
     echo 1;
 }else {
+//    var_dump('MAL');
     echo 0;
 }
 

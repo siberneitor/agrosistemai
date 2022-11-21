@@ -2,7 +2,7 @@
 
 //datos de conexion local
 $hostname = 'localhost';
-$database = 'sistemaventas';
+$database = 'sistemaventas2';
 $username = 'ubuntu';
 $password = 'Mexico1.';
 

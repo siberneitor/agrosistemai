@@ -10,10 +10,10 @@ include '../header.php';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Reportes</title>
-    <link rel="stylesheet" href="/css/reportes.css">
-    <script src="/js/reportes.js"></script>
-    <script src="/js/ganancias.js"></script>
-    <script src="/js/gastos.js"></script>
+    <link rel="stylesheet" href="/agrosistemai/css/reportes.css">
+    <script src="/agrosistemai/js/reportes.js"></script>
+    <script src="/agrosistemai/js/ganancias.js"></script>
+    <script src="/agrosistemai/js/gastos.js"></script>
 </head>
 <body>
 <!--  <button id ="btnExportar">EXPORTAR</button> -->

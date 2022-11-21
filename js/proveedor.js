@@ -1,10 +1,4 @@
-
-
 $(document).ready(function() {
-
-
-
-
 	//
 	// $( '#selectProv').multiselect({
 	//
@@ -67,6 +61,7 @@ $(document).ready(function() {
 
 
 	$('#btnAddProv').click(function () {
+		console.log('llega hasta aqui');
 
 		$('#formProv').validate({
 			rules: {
@@ -140,7 +135,7 @@ $(document).ready(function() {
 	// 	$("#unidades").val(unidades);
 	// 	$(".modal-header").css("background-color", "#007bff");
 	// 	$(".modal-header").css("color", "white" );
-	// 	$(".modal-title").text("Editar prodcuto");
+	// 	$(".modal-title").text("Editar producto");
 	// 	$('#modalCRUD').modal('show');
 	//
 	// 	//$('#selectProv').prepend("<option value='1' >Josh_reder</option>");

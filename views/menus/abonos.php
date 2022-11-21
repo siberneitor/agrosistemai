@@ -1,5 +1,5 @@
 <?php
-include '../sources.php';
+//include '../sources.php';
 include '../header.php';
 
 ?>
@@ -10,7 +10,7 @@ include '../header.php';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Abonos</title>
-        <script src="/js/abonos.js"></script>
+        <script src="/agrosistemai/js/abonos.js"></script>
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar bg-light">
@@ -19,7 +19,8 @@ include '../header.php';
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="btn btn-success" href="/views/adds/addAbono.php">Nuevo Abono</a>
+<!--                    <a class="btn btn-success" href="/views/adds/addAbono.php">Nuevo Abono</a>-->
+                    <a class="btn btn-success" href="../adds/addAbono.php">Nuevo Abono</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-secondary" href="creditos.php">listado de creditos</a>

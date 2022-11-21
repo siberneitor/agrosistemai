@@ -1,45 +1,45 @@
 <?php
-//include 'conexion.php';
 include '../../database/conexioni.php';
 include '../funciones.php';
 
-
-
-
-	$Cod=$_POST['Codigo'];
-	$Art=$_POST['Art'];
-	$Costo=$_POST['Costo'];
+$Cod=$_POST['Codigo'];
+$Art=$_POST['Art'];
+$marca=$_POST['marca'];
+$categProd=$_POST['categProd'];
+$Provee=$_POST['proovProd'];
+if(isset($_POST['Costo'])){
+    $Costo=$_POST['Costo'];
+}
+if(isset($_POST['Precio'])){
     $Precio=$_POST['Precio'];
-	$Provee=$_POST['Provee'];
+}
+if(isset($_POST['Fcad'])){
     $Fcad=$_POST['Fcad'];
+}
+if(isset($_POST['Unidades'])){
     $Unidades=$_POST['Unidades'];
+}
 
-    $fechaActual = date('Y-m-d');
-
+$fechaActual = date('Y-m-d');
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
 
-
 switch ($opcion){
     case 1:
-
         if(existenciaCodigoProducto($mysqli,$Cod)) {
-
             echo 'este codigo ya ha sido ingresado anteriormente';
         }else{
-            echo $rrr = $mysqli->query("insert into producto (codigo,descripcion,id_proov) values ('$Cod','$Art','$Provee')") or die($mysqli->error);
-
+            echo $rrr = $mysqli->query("insert into producto (codigo,descripcion,id_marca,id_categoria,id_proov) values ('$Cod','$Art','$marca','$categProd','$Provee')") or die($mysqli->error);
         }
         //al insertar un producto, automaticamemte se inserta tambien en la tabla inventario
         //echo $rrr=$mysqli->query("insert into inventario (codigo,fecha_ingreso,estatus) values ('$Cod','$fechaActual',0)") or die($mysqli->error);
-
-    break;
+        break;
     case 2:
 //        $consulta =$mysqli->query(" select id_proov from proveedores where nombre = '$Provee' ");
 //        $result = $consulta->fetch_assoc();
 //        $idProov=$result['id_proov'];
 
-        var_dump('EMTA A OPCION 2 Y LA VAR $Fcad ES: '.$Fcad. '<- TERMINA FECHA CADUCIDAD');
+//        var_dump('EMTA A OPCION 2 Y LA VAR $Fcad ES: '.$Fcad. '<- TERMINA FECHA CADUCIDAD');
 
         $consulta =$mysqli->query(" select codigo from inventario where codigo = '$Cod' ");
         //$result = $consulta->fetch_assoc();
@@ -47,47 +47,48 @@ switch ($opcion){
         $existeCodigo = $consulta->num_rows;
 
 
-     if(!$existeCodigo){
-         if(empty($Fcad)) {
-             $queryInsertInv = "insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,estatus)
+        if(!$existeCodigo){
+            if(empty($Fcad)) {
+                $queryInsertInv = "insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,estatus)
       values ('$Cod','$Unidades','$Costo','$Precio','$fechaActual',1)";
-             $ejecQueryInsertInv = $mysqli->query($queryInsertInv) or die ($mysqli->error);
-         }else{
-         $queryInsertInv = "insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,fecha_caducidad,estatus)
+                $ejecQueryInsertInv = $mysqli->query($queryInsertInv) or die ($mysqli->error);
+            }else{
+                $queryInsertInv = "insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,fecha_caducidad,estatus)
       values ('$Cod','$Unidades','$Costo','$Precio','$fechaActual','$Fcad',1)";
-         $ejecQueryInsertInv = $mysqli->query($queryInsertInv) or die ($mysqli->error);
-         }
+                $ejecQueryInsertInv = $mysqli->query($queryInsertInv) or die ($mysqli->error);
+            }
 
-     }
+        }
 
         if(empty($Fcad)) {
-
             $updateProd = $mysqli->query("
-        update producto
-JOIN inventario
-ON producto.codigo = inventario.codigo
-JOIN proveedores ON producto.id_proov = proveedores.id_proov
-set producto.descripcion = '$Art',
-    inventario.costo = '$Costo' ,
-    inventario.precio = '$Precio',
-    proveedores.nombre = '$Provee',
-    inventario.fecha_caducidad = NULL,
-    inventario.unidades = '$Unidades'
-where producto.codigo =  '$Cod'") or die($mysqli->error);
+                                            update producto
+                                            JOIN inventario
+                                            ON producto.codigo = inventario.codigo
+                                            JOIN proveedores ON producto.id_proov = proveedores.id_proov
+                                            set producto.descripcion = '$Art',
+                                            inventario.costo = '$Costo' ,
+                                            inventario.precio = '$Precio',
+                                            proveedores.nombre = '$Provee',
+                                            inventario.fecha_caducidad = NULL,
+                                            inventario.unidades = '$Unidades'
+                                            where producto.codigo =  '$Cod'
+                                          ") or die($mysqli->error);
 
         }else{
             $updateProd = $mysqli->query("
-        update producto
-JOIN inventario
-ON producto.codigo = inventario.codigo
-JOIN proveedores ON producto.id_proov = proveedores.id_proov
-set producto.descripcion = '$Art',
-    inventario.costo = '$Costo' ,
-    inventario.precio = '$Precio',
-    proveedores.nombre = '$Provee',
-    inventario.fecha_caducidad = '$Fcad',
-    inventario.unidades = '$Unidades'
-where producto.codigo =  '$Cod'") or die($mysqli->error);
+                                            update producto
+                                            JOIN inventario
+                                            ON producto.codigo = inventario.codigo
+                                            JOIN proveedores ON producto.id_proov = proveedores.id_proov
+                                            set producto.descripcion = '$Art',
+                                                inventario.costo = '$Costo' ,
+                                                inventario.precio = '$Precio',
+                                                proveedores.nombre = '$Provee',
+                                                inventario.fecha_caducidad = '$Fcad',
+                                                inventario.unidades = '$Unidades'
+                                            where producto.codigo =  '$Cod'
+                                        ") or die($mysqli->error);
         }
 
         break;
@@ -97,22 +98,9 @@ where producto.codigo =  '$Cod'") or die($mysqli->error);
         echo $result = $mysqli->query($consulta) or die($mysqli->error);
         break;
 
-       // var_dump('ERROR: '. $mysqli->error. '<-termina error');
+    // var_dump('ERROR: '. $mysqli->error. '<-termina error');
 
 }
-//
-////$qmax=mysql_query("SELECT max(id_producto) as NUMAX from producto")or die(mysql_error());
-//$qmax="SELECT max(id_producto) as NUMAX from producto";
-//
-//
-////$rmax=mysql_fetch_array($qmax,MYSQL_ASSOC);
-//$qmax2=$mysqli->query($qmax);
-//
-//$rmax = $qmax2->fetch_array(MYSQLI_ASSOC); //O también $resultado->fetch_assoc()
-//
-//
-//$rm= $rmax["NUMAX"];
-////echo $rm;
-//$rm++;
+
 
 ?>

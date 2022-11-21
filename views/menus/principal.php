@@ -1,7 +1,6 @@
 <?php
-include '../sources.php';
-include '../header.php';
-
+//include '../sources.php';
+//include '../header.php';
 
 ?>
 

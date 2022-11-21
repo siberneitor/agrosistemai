@@ -10,12 +10,15 @@ $query= "select inventario.codigo,
      inventario.unidades,
 	 inventario.costo,
 	 inventario.precio,
+      marca.nombre_marca marca,
+       categoria.nombre_categoria categoria,
      proveedores.nombre as proveedor,
      inventario.fecha_ingreso,
 	 inventario.fecha_caducidad,      
 	 (select  if(inventario.estatus = 1, \"activo\", \"inactivo\")) as estatus
      from inventario
-	join producto on producto.codigo = inventario.codigo
+	join producto on producto.codigo = inventario.codigo join marca ON producto.id_marca = marca.id_marca 
+ join categoria ON producto.id_categoria = categoria.id_categoria          
     join proveedores on producto.id_proov = proveedores.id_proov    
 ";
 

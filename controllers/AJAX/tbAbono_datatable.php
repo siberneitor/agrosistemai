@@ -12,7 +12,6 @@ $consulta =" select abono.id_abono,
        abono.id_detalle_credito,
         abono.id_cliente
 from abono
-
 ";
 
 //switch($opcion){
@@ -30,7 +29,7 @@ from abono
 //
 // }
 
-$consulta = $consulta.$condicion;
+//$consulta = $consulta.$condicion;
 
     $resultado= $mysqli->query($consulta);
 

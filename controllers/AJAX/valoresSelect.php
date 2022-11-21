@@ -1,27 +1,19 @@
 <?php
 
 include '../../database/conexioni.php';
-
 //if (isset($_POST['idClienteCred'])){
-
    //$idClienteCred = $_POST['idClienteCred'];
    $idClienteCred = 3;
-
-    $queryCredXclient ="
- select detalle_credito.id_detalle_credito as idCredDC,
+    $queryCredXclient ="select detalle_credito.id_detalle_credito as idCredDC,
        detalle_credito.id_cliente AS idCLienteDC,
        a.id_detalle_credito as idCredA,
       detalle_credito.cantidad_por_pagar as cantidadIncial,
       (SELECT IFNULL(sum(a.total),0)) AS CONVERTIRCERO,
          (SELECT IFNULL( (select cantidadIncial - sum(a.total)),cantidadIncial)) AS cantidadQdebe
 from detalle_credito
-left join abono a on detalle_credito.id_detalle_credito = a.id_detalle_credito where detalle_credito.id_cliente = '$idClienteCred' group by detalle_credito.id_detalle_credito, detalle_credito.id_cliente, a.id_detalle_credito
-
-";
+left join abono a on detalle_credito.id_detalle_credito = a.id_detalle_credito where detalle_credito.id_cliente = '$idClienteCred' group by detalle_credito.id_detalle_credito, detalle_credito.id_cliente, a.id_detalle_credito";
     $resultCredXcliente = $mysqli->query($queryCredXclient) or die ($mysqli->error);
-
 //}
-
 
 $query ="select id_proov,nombre from proveedores order by  nombre asc";
 $result = $mysqli->query($query);
@@ -31,6 +23,12 @@ $resultprov = $mysqli->query($queryprov);
 
 $queryprov2 ="select id_proov,nombre from proveedores order by  nombre asc";
 $resultprov2 = $mysqli->query($queryprov2);
+
+$queryCateg ="select id_categoria,nombre_categoria from categoria order by nombre_categoria asc";
+$resultCateg = $mysqli->query($queryCateg) or die ($mysqli->error);
+
+$queryMarca ="select id_marca,nombre_marca from marca order by nombre_marca asc";
+$resultMarca = $mysqli->query($queryMarca) or die ($mysqli->error);
 
 $queryGetClientes ="select id_cliente,nombre,apellido_paterno,apellido_materno from cliente where id_cliente !=1 order by apellido_paterno asc";
 $resultGetClientes = $mysqli->query($queryGetClientes);

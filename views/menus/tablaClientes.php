@@ -1,5 +1,5 @@
 <?php
-include '../sources.php';
+//include '../sources.php';
 include '../header.php';
 include '../adds/modales/modalAddClient.php';
 ?>
@@ -7,7 +7,7 @@ include '../adds/modales/modalAddClient.php';
 <html>
 <head>
     <title>Clientes</title>
-    <script src="/js/clientes.js"></script>
+    <script src="/agrosistemai/js/clientes.js"></script>
 
 </head>
 <body>
@@ -17,7 +17,7 @@ include '../adds/modales/modalAddClient.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-success" href="/views/adds/addCliente.php">Agregar Cliente</a>
+                <a class="btn btn-success" href="/agrosistemai/views/adds/addCliente.php">Agregar Cliente</a>
             </li>
 
         </ul>

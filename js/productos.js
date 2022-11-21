@@ -1,14 +1,6 @@
-
-
 $(document).ready(function() {
-
 	mostrarTablaAlertaProducto();
-
-
-
 	$( '#selectProv').multiselect({
-
-
 		numberDisplayed: 1,
 		enableFiltering: true,
 		enableCaseInsensitiveFiltering: true,
@@ -19,92 +11,75 @@ $(document).ready(function() {
 		nonSelectedText: 'TODOS',
 		filterPlaceholder: 'Buscar',
 		selectAllText: 'TODOS'
-
-
 	});
-
-
 
 	$('#btnAddProd').click(function () {
-
-		//empieza
-
-			$('#formAddProd').validate({
-				rules: {
-					addCod: { required: true,
-						number:true
-					},
-					addArt: { required: true
-					},
-
-
+		$('#formAddProd').validate({
+			rules: {
+				addCod: { required: true,
+					number:true
 				},
-				messages: {
-					addCod: {
-						required: "el codigo es obigatorio",
-						number: "el codigo solo debe contener numeros",
-					},
-					addArt: {
-						required: "el nombre del articulo es obigatorio"
-
-					}
-
-
-
+				addArt: { required: true
 				},
-				submitHandler: function (form) {
-
-					var codigoProd = $('#addCod').val();
-					var nombreProd = $('#addArt').val();
-					var proovProd = $('#selectProv').val();
-					agregarProducto(codigoProd,nombreProd,proovProd);
+			},
+			messages: {
+				addCod: {
+					required: "el codigo es obigatorio",
+					number: "el codigo solo debe contener numeros",
+				},
+				addArt: {
+					required: "el nombre del articulo es obigatorio"
 				}
-
+			},
+			submitHandler: function (form) {
+				var codigoProd = $('#addCod').val();
+				var nombreProd = $('#addArt').val();
+				var marcaProd = $('#selectMarca').val();
+				var categProd = $('#selectCateg').val();
+				var proovProd = $('#selectProv').val();
+				agregarProducto(codigoProd,nombreProd,marcaProd,categProd,proovProd);
+			}
 		});
-
 	});
-
-
-
 	//Editar
 	$(document).on("click", ".btnEditar", function(){
 		//alert('presionate el boton editar');
-
-
-
 		opcion = 2;//editar
 		fila = $(this).closest("tr");
 		descripcion = fila.find('td:eq(0)').text();
 		codigo = parseInt(fila.find('td:eq(1)').text()); //capturo el ID
 		costo = fila.find('td:eq(2)').text();
 		precio = fila.find('td:eq(3)').text();
-		proveedor = fila.find('td:eq(4)').text();
-		fecha_caducidad = fila.find('td:eq(5)').text();
-		unidades = fila.find('td:eq(6)').text();
+		marca = fila.find('td:eq(4)').text();
+		categoria = fila.find('td:eq(5)').text();
+		proveedor = fila.find('td:eq(6)').text();
+		fecha_caducidad = fila.find('td:eq(7)').text();
+		unidades = fila.find('td:eq(8)').text();
 		$("#codigo").val(codigo);
 		$("#descripcion").val(descripcion);
 		$("#costo").val(costo);
 		$("#precio").val(precio);
+		$("#marca").val(marca);
+		$("#categoria").val(categoria);
 		$("#proveedor").val(proveedor);
 		$("#fecha_caducidad").val(fecha_caducidad);
 		$("#unidades").val(unidades);
 		$(".modal-header").css("background-color", "#007bff");
 		$(".modal-header").css("color", "white" );
-		$(".modal-title").text("Editar prodcuto");
+		$(".modal-title").text("Editar producto");
 		$('#modalCRUD').modal('show');
-
 		//$('#selectProv').prepend("<option value='1' >Josh_reder</option>");
-
 	});
 
 	$('#formUsuarios').submit(function(e){
 		//alert('VAS BIEN');
-
 		e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
 		Codigo = $.trim($('#codigo').val());
 		Art = $.trim($('#descripcion').val());
 		Costo = $.trim($('#costo').val());
 		Precio = $.trim($('#precio').val());
+		marca = $.trim($('#marca').val());
+		categoria = $.trim($('#categoria').val());
 		Provee = $.trim($('#proveedor').val());
 		Fcad = $.trim($('#fecha_caducidad').val());
 		Unidades = $.trim($('#unidades').val());
@@ -112,7 +87,7 @@ $(document).ready(function() {
 			url:'../../controllers/AJAX/agregarProducto_ajax.php',
 			type: "POST",
 			datatype:"json",
-			data:  {Codigo:Codigo, Art:Art, Costo:Costo, Precio:Precio, Provee:Provee, Fcad:Fcad ,Unidades:Unidades,opcion:opcion},
+			data:  {Codigo:Codigo,Art:Art,Costo:Costo,Precio:Precio,marca:marca,categProd:categoria,Provee:Provee,Fcad:Fcad,Unidades:Unidades,opcion:opcion},
 			success: function(data) {
 				tablaUsuarios.ajax.reload(null, false);
 			}
@@ -153,13 +128,12 @@ $(document).ready(function() {
 			{"data": "codigo"},
 			{"data": "costo"},
 			{"data": "precio"},
+			{"data": "marca"},
+			{"data": "categoria"},
 			{"data": "proveedor"},
 			{"data": "fecha_caducidad"},
 			{"data": "unidades"},
 			{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
 		]
 	});
-
-
-
 })

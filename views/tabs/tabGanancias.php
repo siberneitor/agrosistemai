@@ -1,13 +1,13 @@
 <?php
 
-include '../controllers/AJAX/valoresSelect.php';
-include '../controllers/variables.php';
+include '../../controllers/AJAX/valoresSelect.php';
+include '../../controllers/variables.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Ventas</title>
-    <script src="/js/ganancias.js"></script>
+    <script src="/agrosistemai/js/ganancias.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar bg-light">
@@ -96,17 +96,18 @@ include '../controllers/variables.php';
 
 
 
-<table id ="tbVentasR" class ="container-fluid">
+<table id ="tbVentasR" class ="container-fluid" width="100%">
     <thead class="text-center">
     <tr>
         <th>NO. Venta</th>
         <th>Tipo Venta</th>
-        <th>Unidades</th>
+        <th>Unid.</th>
         <th>Total</th>
         <th>Pago con:</th>
         <th>Cambio</th>
         <th>No. CLiente</th>
         <th>Fecha Venta</th>
+        <th>Det. Venta</th>
     </tr>
     </thead>
     <tbody>

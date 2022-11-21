@@ -1,7 +1,6 @@
 <?php
-include '../sources.php';
+//include '../sources.php';
 include '../header.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -10,12 +9,11 @@ include '../header.php';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Creditos</title>
-        <script src="/js/creditos.js"></script>
-        <link rel="stylesheet" href="/css/creditos.css">
+        <script src="/agrosistemai/js/creditos.js"></script>
+        <link rel="stylesheet" href="/agrosistemai/css/creditos.css">
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar bg-light">
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
@@ -23,10 +21,13 @@ include '../header.php';
                     <a class="btn btn-success" href="/views/adds/addCredito.php">Nuevo Credito</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-secondary" href="abonos.php">Abonos</a>
+                    <a class="btn btn-outline-secondary" href=" abonos.php">Abonos</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-secondary" href="">Reporte de Credito</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-secondary" href="movimientos.php">Movimientos</a>
                 </li>
             </ul>
         </div>
@@ -55,7 +56,7 @@ include '../header.php';
             </ul>
         </div>
     </nav>
-    <table id ="tbCreditoGeneral"  class="" style="width:100%">
+    <table id ="tbCreditoGeneral"  class="table-striped" style="width:100%">
         <thead class="text-center">
         <tr>
             <th></th>
@@ -67,6 +68,7 @@ include '../header.php';
             <th>Monto Total de Cred</th>
             <th>Fecha Vencimiento</th>
             <th>fecha Ultimo Abono</th>
+            <th>Periodos de Pago</th>
         </tr>
         </thead>
         <tbody>
@@ -75,4 +77,8 @@ include '../header.php';
 
     </body>
 </html>
+<?php
+include '../adds/modales/modalCalendarioPagos.php';
+include '../adds/modales/modalDetalleTicket.php';
+?>
 

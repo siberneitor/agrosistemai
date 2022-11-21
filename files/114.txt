@@ -1,0 +1,6 @@
+1         7      descripcion prueba            150.00        150.00
+
+                  TOTAL :        150
+efectivo :160
+Cambio :10
+Cantidad de productos :1

@@ -2,9 +2,19 @@
 include '../../database/conexioni.php';
 include '../funciones.php';
 
+$dtz = new DateTimeZone("America/Mexico_City");
+$dt = new DateTime("now", $dtz);
+//$fechaActual = date("Y-m-d");
+//$fechaActual = $dt->format('Y-m-d');
+//var_dump($dt->format('Y-m-d'));
+
+//$fechaHoraActual = date("Y-m-d H:i:s");
+//$fechaHoraActual = $dt->format("Y-m-d H:i:s");
+
+
 $opcion = $_GET['opcion'];
-$fecha_alta = date("Y-m-d");
-$fecha_registro = date("Y-m-d H:i:s");
+$fecha_alta =  $dt->format('Y-m-d');
+$fecha_registro =  $dt->format("Y-m-d H:i:s");
 
 $pagoInicial =0;
 //$fechaUltimoPago=NULL;
@@ -28,8 +38,9 @@ $totalUnidades=$_GET['totalUnidades'];
 
 //var_dump('entra a ajax CREDITOOOO AJAX: $opcion: '.$opcion. ' / '.'$pagoInicial: '.$pagoInicial.'/'.'$estatusCredito: '.$estatusCredito. '/'.'$montoPrestamo: '.$montoPrestamo.'/'.'$selectCliente: '.$selectCliente.'/'.'$interes: '.$interes.'/'.'$fechaVenc: '.$fechaVenc);
 
-$montoApagar = sumarPorcentaje($montoPrestamo,$interes);
-$cantidadXpagar=$montoApagar-$pagoInicial;
+$montoApagar = $montoPrestamo - $pagoInicial;
+//$cantidadXpagar=sumarPorcentaje($montoApagar,$interes);
+$cantidadXpagar=$montoApagar;
 
 switch($opcion){
     case 1:
@@ -74,7 +85,7 @@ switch($opcion){
             )
              values (
              '$fecha_alta',
-             (SELECT DATEDIFF('$fechaVenc', '$fecha_alta')),
+                 (SELECT DATEDIFF('$fechaVenc', '$fecha_alta')),
              '$interes',
              '$fechaVenc',
              '$montoPrestamo',
@@ -86,6 +97,30 @@ switch($opcion){
              '$estatusCredito',
              '$getIdVenta'             
              )")or die ($mysqli->error);
+
+//        $queryGetIdVenta = "select MAX(id_detalle_credito) as idCredito from detalle_credito";
+        $ejecQueryGetIdCredito = $mysqli->query('select MAX(id_detalle_credito) as idCredito from detalle_credito') or die($mysqli->error);
+        $arrayGetIdCredito = $ejecQueryGetIdCredito->fetch_assoc();
+        $getIdCredito = $arrayGetIdCredito['idCredito'];
+
+        //se obtiene la cantidad actual que debe el cliente de cuerdo al ultimo movimiento
+        $sql2= $mysqli->query("select deuda from movimientos where idMovimiento = (select max(idMovimiento) from movimientos where id_cliente = '$selectCliente')") or die($mysqli->error);
+        $arrayGetDeuda = $sql2->fetch_assoc();
+        if(isset($arrayGetDeuda['deuda'])){
+            $getDeuda = $arrayGetDeuda['deuda'];
+        }else{
+            $getDeuda =0;
+        }
+
+        $deuda = $getDeuda + $montoPrestamo;
+
+
+        $sql = $mysqli->query("insert into movimientos (id_cliente,fecha,tipoMovimiento,cantidad,id_detalle_credito,id_venta,deuda) values ('$selectCliente','$fecha_registro',1,'$montoPrestamo','$getIdCredito','$getIdVenta','$deuda')") or die($mysqli->error);
+
+        if($pagoInicial){
+            $cantidadAbonoInicial = $deuda - $pagoInicial;
+            $sql = $mysqli->query("insert into movimientos (id_cliente,fecha,tipoMovimiento,cantidad,id_detalle_credito,id_venta,id_abono,deuda) values ('$selectCliente','$fecha_registro',2,'$pagoInicial','$getIdCredito','$getIdVenta',0,$cantidadAbonoInicial)") or die($mysqli->error);
+       }
 
 
 

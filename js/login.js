@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 
         $.ajax({
-            url:'/controllers/AJAX/procesaLogin.php',
+            url:'../controllers/AJAX/procesaLogin.php',
             type: "POST",
             datatype:"json",
             data:  {user:user, password:password},
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 console.log(data);
                        if (data==1){
                           // alert('existe');
-                           window.location.href = "/views/menus/puntoVenta.php";
+                           window.location.href = "../views/menus/puntoVenta.php";
                        }else{
                           // alert('no existe');
                            alertify.error('usuario o password incorrectos');

@@ -1,6 +1,7 @@
 <!--Modal para CRUD-->
 <?php
-include '../../../controllers/AJAX/valoresSelect.php';
+//include '../../../controllers/AJAX/valoresSelect.php';
+include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.php");
 
 ?>
 
@@ -9,17 +10,12 @@ include '../../../controllers/AJAX/valoresSelect.php';
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Agregar proveedor</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                <button type="button" class="close" id="closeAddProv1" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="formProv"  method="get" accept-charset="utf-8" class="form-horizontal">
                 <div class="modal-body">
-
-
-
-
                             <div class ="form-group row">
-
                                 <label for="nombreProv" class="col-3 col-form-label">nombre</label>
                                 <div class="col-8">
                                     <input type="text" class="form-control input-sm" id ="nombreProv" name="nombreProv" placeholder="nombre" autofocus required>
@@ -53,8 +49,8 @@ include '../../../controllers/AJAX/valoresSelect.php';
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="btnAddProv" class="btn btn-success" >agregar</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btnAddProv" class="btn btn-success" >agregar2</button>
+                    <button type="button" class="btn btn-light" id ="closeAddProv2" data-dismiss="modal">Cancelar</button>
 <!--                    <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>-->
                 </div>
             </form>

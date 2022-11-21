@@ -1,7 +1,6 @@
 <?php
-include '../sources.php';
+//include '../sources.php';
 include '../header.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ include '../header.php';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Administracion</title>
-        <script src="/js/reportes.js"></script>
+        <script src="/agrosistemai/js/reportes.js"></script>
     </head>
     <body>
 
@@ -43,6 +42,7 @@ include '../header.php';
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade  show active" id="balance" role="tabpanel" aria-labelledby="balance-tab"><?php include '../tabs/tabBalance.php';?></div>
+<!--                        <div class="tab-pane fade  show active" id="balance" role="tabpanel" aria-labelledby="balance-tab">--><?php //include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/views/tabs/tabBalance.php")?><!--</div>-->
                         <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><?php include '../tabs/tabGanancias.php';?></div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><?php include '../tabs/tabGastos.php';?></div>
 
@@ -54,6 +54,8 @@ include '../header.php';
             </div>
         </div>
     </div>
+
+<?php    include '../adds/modales/modalDetalleTicket.php'; ?>
 
 
     </body>

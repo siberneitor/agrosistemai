@@ -1,7 +1,6 @@
 <?php
 include '../sources.php';
 include '../header.php';
-
 include '../../controllers/AJAX/valoresSelect.php';
 ?>
 <!DOCTYPE html>
@@ -10,7 +9,10 @@ include '../../controllers/AJAX/valoresSelect.php';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Agregar Abono</title>
-    <script src="/js/abonos.js"></script>
+<!--    <script src="../js/abonos.js"></script>-->
+<!--    <script src="../js/abonos.js"></script>-->
+    <script src="/agrosistemai/js/abonos.js"></script>
+
 </head>
 
 <body>
@@ -21,10 +23,10 @@ include '../../controllers/AJAX/valoresSelect.php';
 
 
             <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="/views/menus/creditos.php">listado de creditos</a>
+                <a class="btn btn-outline-secondary" href="/agrosistemai/views/menus/creditos.php">listado de creditos</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="/views/menus/abonos.php">listado de abonos</a>
+                <a class="btn btn-outline-secondary" href="/agrosistemai/views/menus/abonos.php">listado de abonos</a>
             </li>
         </ul>
     </div>
@@ -73,8 +75,6 @@ include '../../controllers/AJAX/valoresSelect.php';
 
 
                                 <div class ="form-group row">
-
-
                                     <label id="lblescojeCred" class="col-6 col-form-label" hidden="true">selecciona un credito de la lista</label>
 <!--                                    <div class="col-sm-3">-->
 <!--                                        <input type="text" class="form-control input-sm" id ="inputNocred" name="inputNocred" readonly>-->

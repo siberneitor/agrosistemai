@@ -5,12 +5,12 @@ tel: 7271028618
 NO. ticket :107
 no. cliente:1
 Tipo de venta:contado
-25-08-2020   17:29:10
+26-03-2022   18:27:07
 
 cantidad      codigo       articulo         precio    total
-1         2      galletas mexicanas            8.00        8.00
+2         1      producto1            12.00        24.00
 
-                  TOTAL :        8
-efectivo :9
+                  TOTAL :        24
+efectivo :25
 Cambio :1
-Cantidad de productos :1
+Cantidad de productos :2

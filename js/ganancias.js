@@ -22,9 +22,34 @@ $(document).ready(function() {
 			{"data": "cambio"},
 			{"data": "id_cliente"},
 			{"data": "fechaRegistro"},
-			//{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button></div></div>"}
+			{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-warning btn-sm btnDetalleVenta2'><i class='material-icons'>receipt_long</i></button></div></div>"}
 		],
 		"order": [[ 0, "desc" ]]
+	});
+	//evneto para icono detalle venta
+	$(document).on("click", ".btnDetalleVenta2", function(){
+		fila = $(this).closest("tr");
+		idNotaCompra = parseInt(fila.find('td:eq(0)').text()); //capturo el ID
+		// console.log('idNotaCompra');
+		// console.log(idNotaCompra);
+
+		$.ajax({
+			url:'../../controllers/AJAX/detalle_ticket_ajax.php',
+			type:'GET',
+			data:{idNotaCompra:idNotaCompra},
+			success:function(tabla){
+				// console.log(tabla);
+				$('#divDetalleTicket').html(tabla);
+				$('#modalDetalleTicket').modal('show');
+			},
+			error:function(error1,error2,error3){
+				console.log(error1);
+				console.log(error2);
+				console.log(error3);
+			},
+			complete: function(){
+			}
+		});
 	});
 
 	$('#linkRventas').click(function (e){

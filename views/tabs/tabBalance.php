@@ -7,7 +7,7 @@ include '../../controllers/variables.php';
 <html>
 <head>
     <title>Resultados</title>
-    <script src="/js/balance.js"></script>
+    <script src="/agrosistemai/js/balance.js"></script>
 </head>
 <body>
 <div class ="content">

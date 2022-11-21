@@ -8,7 +8,7 @@ include '../header.php';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Agregar Cliente</title>
-    <script src="/js/clientes.js"></script>
+    <script src="/agrosistemai/js/clientes.js"></script>
 </head>
 
 <body>
@@ -18,7 +18,7 @@ include '../header.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-outline-secondary" href="/views/menus/tablaClientes.php">Listado de clientes</a>
+                <a class="btn btn-outline-secondary" href="/agrosistemai/views/menus/tablaClientes.php">Listado de clientes</a>
             </li>
 
         </ul>

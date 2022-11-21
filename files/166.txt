@@ -1,0 +1,27 @@
+agroinsumos llano grande
+20 de noviembre #23 colonia centro
+Huitzuco Guerrero
+tel: 7271028618
+NO. ticket :166
+no. cliente:3
+Tipo de venta:CREDITO
+11-06-22   21:25:21
+
+cantidad      codigo       articulo         precio    total
+1         1      producto1            12.00        12.00
+3         2      producto 2            200.00        600.00
+
+Cantidad de productos: 4
+Deuda Anterior $452.05
+
+ Monto Inicial Nuevo Credito:         612
+Pago Inicial: 600
+Nuevo Monto Agregado A credito: 12
+Por pagar: 464.05
+Pago al 01/07/2022: 470.66
+Pago al 01/08/2022: 481.01
+Pago al 01/09/2022: 491.37
+Pago al 01/10/2022: 501.72
+Pago al 01/11/2022: 512.08
+Pago al 01/12/2022: 522.43
+Pago al 01/01/2023: 528.08

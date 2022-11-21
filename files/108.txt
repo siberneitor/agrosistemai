@@ -5,12 +5,13 @@ tel: 7271028618
 NO. ticket :108
 no. cliente:1
 Tipo de venta:contado
-25-08-2020   18:07:23
+26-03-2022   18:28:01
 
 cantidad      codigo       articulo         precio    total
-1         5      descripcion prueba            180.00        180.00
+1         1      producto1            12.00        12.00
+2         2      producto 2            200.00        400.00
 
-                  TOTAL :        180
-efectivo :400
-Cambio :220
-Cantidad de productos :1
+                  TOTAL :        412
+efectivo :415
+Cambio :3
+Cantidad de productos :3

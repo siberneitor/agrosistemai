@@ -1,3 +1,5 @@
+<?php include '../../controllers/AJAX/valoresSelect.php'; ?>
+
 <div>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -17,7 +19,7 @@
 
                                 <div class ="form-control">
                                     <label for="radioTipoVenta"  class="form-check-label">credito</label><br>
-                                    <input class="form-check-input" type="radio" id="radioTipoVenta" name="radioTipoVenta" value="0" required>
+                                    <input class="form-check-input" type="radio" id="radioTipoVenta" name="radioTipoVenta" value="0" tabindex="1" autofocus required>
                                 </div>
 
                                 <div class ="form-control">
@@ -52,23 +54,40 @@
 
                         <!--inicia inputs credito -->
                         <div id ="divInputsCredito" class = "form-group">
+                            <div class = "col-1">
+                                <label for="selectClienteVentas" class ="labelInputPV">Cliente:</label>
+                                <select  id="selectClienteVentas" name="selectClienteVentas">
+                                    <option value="1" selected>-   Sin Cliente    -</option>
+                                    <?php
+                                    while ($filasCLientes = $resultGetClientes->fetch_assoc()){
+                                        $idCLiente= $filasCLientes["id_cliente"];
+                                        $nombreCLiente= $filasCLientes["nombre"];
+                                        $ap_pat= $filasCLientes["apellido_paterno"];
+                                        $ap_mat= $filasCLientes["apellido_materno"];
+
+                                        echo '<option value="'.$idCLiente.'">'.$ap_pat." ".$ap_mat." ".$nombreCLiente.'</option>';
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
                             <h6></h6>
                             <div class="form-group row">
                                 <label for="txtAbonoInicial" class="col-sm-2 col-form-label">Abono inicial</label>
                                 <div class="col-sm-3">
-                                <input type="text" id="txtAbonoInicial" name ="txtAbonoInicial" autofocus class ="form-control-sm"/>
+                                <input type="text" id="txtAbonoInicial" name ="txtAbonoInicial" autofocus class ="form-control-sm" value ="0"/>
                                 </div>
                                 </div>
                             <div class="form-group row">
                                 <label for="interesVenta" class="col-sm-2 col-form-label">Interes</label>
                                 <div class="col-sm-3">
-                                <input type="text" name="interesVenta" id="interesVenta" class ="form-control-sm">
+                                <input type="text" name="interesVenta" id="interesVenta" class ="form-control-sm" value ="0.0712">
                                 </div>
                                 </div>
                             <div class="form-group row">
                                 <label for="fVencVenta" class="col-sm-2 col-form-label">Fecha Limite</label>
                                 <div class="col-sm-3">
-                                <input type="date" name ="fVencVenta" id="fVencVenta"  class ="form-control-sm" required/>
+                                <input type="date" name ="fVencVenta" id="fVencVenta"  class ="form-control-sm" value ="2023-01-30" required/>
 
                                 </div>
                                 </div>

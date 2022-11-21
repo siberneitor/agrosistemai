@@ -1,6 +1,4 @@
-
 //busca el producto por codigo , lo agrega a tabla temporal y muestra la tabla cobrando
-
 alertify.set('notifier','position', 'top-right');
 alertify.set('notifier','delay', 3);
 
@@ -8,104 +6,133 @@ function buscarcod($cod,$unidades){
 	cadena={codigo:$cod,
 		Unidades: $unidades
 	}
-	 $.ajax({
-  		url:'/controllers/buscaCod_controller.php',
-  		type:'POST',
-  		data:cadena,
-  		success:function(resultado){
+	$.ajax({
+		url:'../../controllers/buscaCod_controller.php',
+		type:'POST',
+		data:cadena,
+		success:function(resultado){
 
-  			//se recibe array con resultados y se aplica funcion para dividirlo
-  			dividirResultado=resultado.split('/');
-			
-				bool = dividirResultado[0];
-				mensajeError = dividirResultado[1];
-				inputCodigo=dividirResultado[2];
-				nombreArtRead=dividirResultado[3];
-				$Xunidad=dividirResultado[4];
-			    unidadesInput =dividirResultado[5];
-				$totalXcod=dividirResultado[6];
-				unidadesTempInv = dividirResultado[7];
+			//se recibe array con resultados y se aplica funcion para dividirlo
+			dividirResultado=resultado.split('/');
 
-  		},
-  		fail:function(resultado){
+			bool = dividirResultado[0];
+			mensajeError = dividirResultado[1];
+			inputCodigo=dividirResultado[2];
+			nombreArtRead=dividirResultado[3];
+			$Xunidad=dividirResultado[4];
+			unidadesInput =dividirResultado[5];
+			$totalXcod=dividirResultado[6];
+			unidadesTempInv = dividirResultado[7];
+
+		},
+		fail:function(resultado){
 			//console.log('entra a fail y el resultado es: '+resultado);
-  		},
-  		complete: function(){
+		},
+		complete: function(){
 			$Xunidad=dividirResultado[4];
 
-  			//validacion para saber si encontro resultado o no
-  			if(bool == false) {
+			//validacion para saber si encontro resultado o no
+			if(bool == false) {
 
 				alertify.error(mensajeError);
 
-  				inputCodigo=$("#ttcodigo").val('');
+				inputCodigo=$("#ttcodigo").val('');
 				$('#txtunidad').val(1);
-  			}else{
-
+			}else{
+				//calcula unidades
 				unidadesInputint=parseInt(unidadesInput);
-				totalUnidades= totalUnidades + unidadesInputint;
+				// totalUnidades= totalUnidades + unidadesInputint;
+				totalUnidInputHidden = $('#totalArt').val();
+				if(totalUnidInputHidden ==''){
+					totalUnidInputHidden = 0;
+				}
+				totalUnidades= parseInt(totalUnidInputHidden) + unidadesInputint;
+				$('#totalArt').val(totalUnidades);
+				$("#labelTotalArt").text('total de articulos: '+ totalUnidades);
+
+				//calcula total de cuenta
+				totalCuentaHidden = $('#cantTotal').val();
+				if(totalCuentaHidden ==''){
+					totalCuentaHidden = 0;
+				}
 
 				$Xcod=parseInt($Xunidad) * parseInt(unidadesInput);
+				PRECIO=$Xcod;
+				precio_int=parseFloat(PRECIO);
+				// cantTotal = $('#cantTotal').val();
+				console.log('totalCuentaHidden');
+				console.log(totalCuentaHidden);
+				console.log('precio_int');
+				console.log(precio_int);
 
-  				//PRECIO=$Xunidad;
-  				PRECIO=$Xcod;
-  				precio_int=parseInt(PRECIO);
-				TOTAL=TOTAL+precio_int;
+				TOTAL= parseFloat(totalCuentaHidden) + parseFloat(precio_int);
+				// TOTAL=TOTAL+precio_int;
 
 				//convertir a valor de dinero la cifra total
-				const formatter = new Intl.NumberFormat('en-US', {
+
+				var value = TOTAL;
+				const formatter = new Intl.NumberFormat('es-MX', {
 					style: 'currency',
-					currency: 'USD',
+					currency: 'MXN',
 					minimumFractionDigits: 0
 				})
-				var value = TOTAL;
-
+				$('#cantTotal').val(TOTAL);
 				$("h1").text('TOTAL: '+ formatter.format(value));
 				//console.log(TOTAL);
 
-				$("#labelTotalArt").text('total de articulos: '+ totalUnidades);
 
 				//se carga tabla con resultados.
-				$('.divR').load('/controllers/tablaCobrando_controller.php');
-				//console.log('esto es despues de mostrar la tablita');
+				cargarTabla =$('.divR').load('../../controllers/tablaCobrando_controller.php');
 
- 				//se resetean inputs
-				$('#ttcodigo').focus();
-  				$('#ttcodigo').val('');
-  				$('.td1').val('');
-  				$('.td2').val('');
+				//se resetean inputs
+				// $('#ttcodigo').focus();
+				$('#ttcodigo').val('');
+				$('.td1').val('');
+				$('.td2').val('');
 				$('#txtunidad').val(1);
 
 				$('#selectProdVentas').val(0);
 				$('#selectProdVentas').multiselect('refresh');
-
-  			}
-  		}
-
-  	});
-
+			}
+		}
+	});
 }
-
-function agregarProducto($codigo,$articulo,$provee){
-
+function quitar(){
+	alert('presioanste el boton quitar');
+}
+function agregarProducto(codigoProd,nombreProd,marcaProd,categProd,proovProd){
 	cadena={
 		opcion:1,
-		Codigo:$codigo,
-		Art:$articulo,
-		Provee:$provee,
+		Codigo:codigoProd,
+		Art:nombreProd,
+		marca:marcaProd,
+		categProd:categProd,
+		proovProd:proovProd,
 	}
-
 	$.ajax({
 		type:'POST',
-		url:'/controllers/AJAX/agregarProducto_ajax.php',
+		url:'../../controllers/AJAX/agregarProducto_ajax.php',
 		data:cadena,
 		success:function(x){
 
 			if (x!=1){
 				alertify.error(x);
 			}else{
-				$('.divR').load('tablaAgregarProducto.php');
+				// $('.divR').load('tablaAgregarProducto.php');
 				alertify.success("producto agregado correctamente");
+				$('#addCod').val('');
+				$('#addArt').val('');
+				// $('#selectProv').multiselect('refresh');
+				$('#selectMarca').val(0);
+				$('#selectMarca').multiselect('refresh');
+
+				$('#selectCateg').val(0);
+				$('#selectCateg').multiselect('refresh');
+
+				$('#selectProv').val(0);
+				$('#selectProv').multiselect('refresh');
+
+				// document.getElementById('selectProv').multiselect('refresh');
 
 			}
 
@@ -127,7 +154,6 @@ function agregarProducto($codigo,$articulo,$provee){
 		}
 	});
 }
-
 function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$faddIdGasto,usaFcad){
 	//alert('YEA');
 	cadena={
@@ -174,7 +200,6 @@ function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$fadd
 		}
 	});
 }
-
 function agregarProv($cadena){
 
 	//alert ($cadena);
@@ -183,7 +208,7 @@ function agregarProv($cadena){
 	$.ajax({
 		type:'GET',
 		data:$cadena,
-		url:'/controllers/AJAX/agregarProveedor_ajax.php',
+		url:'../../controllers/AJAX/agregarProveedor_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
@@ -196,6 +221,9 @@ function agregarProv($cadena){
 				alertify.success('el proveedor se guardo con exito');
 				$('#formProv')[0].reset();
 				$('#selectProv').multiselect('refresh');
+				$('#closeAddProv1,#closeAddProv2').click(function(){
+					window.location.reload();
+				});
 
 			}
 
@@ -214,14 +242,42 @@ function agregarProv($cadena){
 
 
 }
-
+function agregarMarca($cadena){
+	$.ajax({
+		type:'GET',
+		data:$cadena,
+		url:'../../controllers/AJAX/agregarMarca_ajax.php',
+		beforesend:function(){
+		},
+		success: function(r){
+			console.log(r);
+			if (r !=1){
+				alertify.error('hubo un error y la marca no pudo ser guardada');
+			}else{
+				alertify.success('la marca se guardo con exito');
+				$('#formMarca')[0].reset();
+				$('#selectMarca').multiselect('refresh');
+				$('#closeModMarca1,#closeModMarca2').click(function(){
+					window.location.reload();
+				});
+			}
+		},
+		error:function(r,rr,rrr){
+			console.log(r);
+			console.log(rr);
+			console.log(rrr);
+		},
+		complete:function(){
+		}
+	});
+}
 function agregarCLiente($valores){
 
 	//alert ('llega a funcion agergar cliente');
 	$.ajax({
 		type:'GET',
 		data:$valores,
-		url:'/controllers/AJAX/agregarCliente_ajax.php',
+		url:'../../controllers/AJAX/agregarCliente_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
@@ -233,10 +289,7 @@ function agregarCLiente($valores){
 				alertify.success('el cliente se guardo con exito');
 				$('#formcliente')[0].reset();
 				//$("#idformulario")[0].reset();
-
 			}
-
-
 		},
 		error:function(r,rr,rrr){
 			console.log(r);
@@ -244,16 +297,28 @@ function agregarCLiente($valores){
 			console.log(rrr);
 		},
 		complete:function(){
-
 		}
 	});
-
 }
-
-
 //hace los calculos de la ventana cobrar
 function datosModalcobrar(){
 	$("#myModal").modal("show");
+	// if($("#myModal").modal("show")){
+	// 	alert('MOSTARO');
+	// }else{
+	// 	alert('no mostr5ado');
+	// }
+	// $("#myModal").click();
+	// $("#myModal").focus();
+	$("#ttcodigo").blur();
+	document.getElementById('ttcodigo').blur();
+	// var esVisible = $("#myModal").is(":visible");
+
+
+
+
+	// $('#radioTipoVenta').attr('tabindex','2');
+
 	$('#divInputsCredito').hide();
 	$('#inputsVentaContado').hide();
 	$('#btnModalCObrar').hide();
@@ -264,15 +329,15 @@ function datosModalcobrar(){
 	$('input:radio[name=radioTipoVenta]').click(function(){
 		radioTVenta = $('input:radio[name=radioTipoVenta]:checked').val();
 		if(radioTVenta ==0){
-			if($('#selectClienteVentas').val() == null){
-				alertify.error('debe seleccionar un cliente');
-				$('#radioTipoVenta').prop('checked', false);
-			}else{
-				$('#divInputsCredito').show();
-				$('#inputsVentaContado').hide();
-				valorcambio =0;
-				vcambio =0;
-			}
+			// if($('#selectClienteVentas').val() == null){
+			// alertify.error('debe seleccionar un cliente');
+			// $('#radioTipoVenta').prop('checked', false);
+			// }else{
+			$('#divInputsCredito').show();
+			$('#inputsVentaContado').hide();
+			valorcambio =0;
+			vcambio =0;
+			// }
 
 		}else{
 
@@ -280,15 +345,10 @@ function datosModalcobrar(){
 			$('#divInputsCredito').hide();
 		}
 	});
-
-
-
-} 
-
+}
 //forma el archivo de texto con los datos de las ventas
 function cobrar(){
 	//$("#formCobrarContado").valid();
-
 	radioTVenta = $('input:radio[name=radioTipoVenta]:checked').val();
 	$('#txtcambio').focus();
 	nv=$('#nocli').text();
@@ -296,9 +356,7 @@ function cobrar(){
 	idCliente =$('#selectClienteVentas').val();
 	pagoInicial=$('#txtAbonoInicial').val();
 	interesVenta=$('#interesVenta').val();
- 	fVencVenta = $('#fVencVenta').val();
-
-
+	fVencVenta = $('#fVencVenta').val();
 
 	datos={
 		TOTAL:TOTAL,
@@ -306,18 +364,18 @@ function cobrar(){
 		cobro:valorcambio,
 		cambiot:vcambio,
 		numcli:idCliente,
-		tipoVenta:radioTVenta
+		tipoVenta:radioTVenta,
+		pagoInicial:pagoInicial,
+		interesVenta:interesVenta,
+		fVencVenta:fVencVenta
 	}
-
 	$.ajax({
 		//url:'f5.php',
-		url:'/controllers/procesarVenta_controller.php',
+		url:'../../controllers/procesarVenta_controller.php',
 		type:'POST',
 		data:datos,
 		success:function(x){
-
 			if(radioTVenta == 0){
-
 				cadenaValores = 'opcion=1&pagoInicial='+pagoInicial+'&estatusCredito=1&montoPrestamo='+TOTAL+'&selectCliente='+idCliente+'&interes='+interesVenta+'&fechaVenc='+fVencVenta+'&totalUnidades='+totalUnidades;
 				agregarCredito(cadenaValores);
 			}
@@ -337,8 +395,8 @@ function cobrar(){
 			$('#txtcambio').val('');
 			$('h5').text('');
 			$('#txtAbonoInicial').val('');
-			$('#interesVenta').val('');
-			$('#fVencVenta').val('');
+			// $('#interesVenta').val('');
+			// $('#fVencVenta').val('');
 			$('#selectClienteVentas').val(0);
 			$('#selectClienteVentas').multiselect('refresh');
 			$('input:radio[name=radioTipoVenta]').prop('checked', false);
@@ -347,12 +405,11 @@ function cobrar(){
 		}
 	})
 }
-
 //borra datos de la tabla temporal y de la tabla cobrando
 function cancelarCobrando(){
 
 	$.ajax({
-		url:'/controllers/AJAX/eliminarCobrar.php',
+		url:'../../controllers/AJAX/eliminarCobrar.php',
 		type:'POST',
 		success:function(x){
 		},
@@ -362,7 +419,9 @@ function cancelarCobrando(){
 			console.log(error3);
 		},
 		complete: function(){
-			
+			$('#cantTotal').val(0);
+			$('#totalArt').val(0);
+
 			$('#ttcodigo').focus();
 
 			totalUnidades =0;
@@ -392,7 +451,6 @@ function cancelarCobrando(){
 		}
 	});
 }
-
 function mostrarTablaAlertaInv(){
 	//console.log('SE EJECUTA FUNCION MOSRAR TABLA ALERT DIV');
 	$('#divTabAlertInv').hide();
@@ -435,9 +493,10 @@ function mostrarTablaAlertaInv(){
 				tablaAlertInv.ajax.reload(null, false);
 				$('#divTabAlertInv').show();
 				$('hr').show();
+				tablaAlertInv.ajax.reload(null, false);
+
 			}else{
 				$('#divTabAlertInv').hide();
-				tablaAlertInv.ajax.reload(null, false);
 				$('#linea').hide();
 			}
 		},
@@ -446,7 +505,6 @@ function mostrarTablaAlertaInv(){
 		}
 	});
 };
-
 function mostrarTablaAlertaProducto(){
 	//console.log('SE EJECUTA FUNCION MOSRAR TABLA ALERTA PRODUCTO');
 	$('#divTabAlertProducto').hide();
@@ -473,6 +531,8 @@ function mostrarTablaAlertaProducto(){
 						{"data": "codigo"},
 						{"data": "costo"},
 						{"data": "precio"},
+						{"data": "marca"},
+						{"data": "categoria"},
 						{"data": "proveedor"},
 						{"data": "fecha_caducidad"},
 						{"data": "unidades"},
@@ -483,27 +543,28 @@ function mostrarTablaAlertaProducto(){
 					},
 					"destroy": true
 				});
-				tablaAlertProducto.ajax.reload(null, false);
 				$('#divTabAlertProducto').show();
 				$('hr').show();
+				tablaAlertProducto.ajax.reload(null, false);
+
 			}else{
 				$('#divTabAlertProducto').hide();
-				tablaAlertProducto.ajax.reload(null, false);
+				// tablaAlertProducto.ajax.reload(null, false);
 				$('#linea').hide();
 			}
+
 		},
 		fail: function (error) {
 			alert('error: '+error);
 		}
 	});
 };
-
 function agregarGasto($valores){
 	//alert ($valores);
 	$.ajax({
 		type:'GET',
 		data:$valores,
-		url:'/controllers/AJAX/agregarGasto_ajax.php',
+		url:'../../controllers/AJAX/agregarGasto_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
@@ -534,13 +595,12 @@ function agregarGasto($valores){
 
 
 }
-
 function agregarCredito($valores){
 	//alert ('llega a funcion agergar credito');
 	$.ajax({
 		type:'GET',
 		data:$valores,
-		url:'/controllers/AJAX/agregarCredito_ajax.php',
+		url:'../../controllers/AJAX/agregarCredito_ajax.php',
 		beforesend:function(){
 		},
 		success: function(r){
@@ -563,58 +623,62 @@ function agregarCredito($valores){
 	});
 
 }
-
 function agregarAbono(valores){
 	//alert ('llega a funcion agergar Abono');
 	$.ajax({
 		type:'GET',
 		data:valores,
-		url:'/controllers/AJAX/agregarAbono_ajax.php',
-		beforesend:function(){
-		},
+		url:'../../controllers/AJAX/agregarAbono_ajax.php',
 		success: function(r){
 			console.log(r);
 			if (r !=1){
-				alert('hubo un error y el abono no pudo ser guardado');
+				// alert('hubo un error y el abono no pudo ser guardado');
+				alertify.success('hubo un error y el abono no pudo ser guardado');
+
 			}else{
-				$('#formAbono')[0].reset();
+				// alert('el abono ha sido registrado con exito');
 				$('#selectCliente').val(0);
-				$('#selectCliente').multiselect('refresh');
-				alert('el abono ha sido registrado con exito');
 				alertify.success('el abono ha sido registrado con exito');
+				$('#formAbono')[0].reset();
+				$('#lblescojeCred').attr('hidden',true);
+				$('#divNoCred').attr('hidden',true);
+				$('#inputNocred').attr('hidden',true);
+				$('#divDeuda').attr('hidden',true);
+				$('#inputDeuda').attr('hidden',true);
+				$('#divInputAbono').attr('hidden',true);
+				$('#btnaddAbono').attr('hidden',true);
+				// $('#divTbCredXuser').empty();
+				$('#selectClienteCred').multiselect('refresh');
+				$('#tbCredXuser').attr('hidden',true);
 			}
 		},
 		error:function(err){
 			console.log(err);
-		},
-		complete:function(){
 		}
 	});
 }
-
 function tablaCredXclient (d) {
 
 	return '<table id ="tbCredXuser2"  class ="" style="padding-left:50px;">'+
 		'<thead>'+
 		'<tr>'+
 		'<th>No Credito</th>'+
-		'<th>cantidad que debe</th>'+
-		'<th>f vencimiento</th>'+
-		'<th>monto total de credito</th>'+
-		'<th>deuda inicial</th>'+
-		'<th>interes</th>'+
-		'<th>pago inicial</th>'+
-		'<th>monto abonado</th>'+
-		'<th>fecha inicio credito</th>'+
-		'<th>no de venta</th>'+
-		'<th></th>'+
+		'<th>Cantidad que Debe</th>'+
+		'<th>F. Vencimiento</th>'+
+		'<th>Monto Financ.</th>'+
+		'<th>Deuda Inic.</th>'+
+		'<th>Interes</th>'+
+		'<th>Pago Inic.</th>'+
+		'<th>Monto Abonado</th>'+
+		'<th>F. Inicio Cred.</th>'+
+		'<th>No. Venta</th>'+
+		'<th>Detalle Venta</th>'+
 		'</tr>'+
 		'</thead>'+
 		'<tbody>'+
 		'</tbody>'+
 		'</table>';
 }
-
 function tablaBalance(fechaInicial,fechaFinal){
 	TABLA =0;
 	fechas = {fechaInicial:fechaInicial,
@@ -622,7 +686,7 @@ function tablaBalance(fechaInicial,fechaFinal){
 	}
 
 	$.ajax({
-		url:'/controllers/AJAX/balance_ajax.php',
+		url:'../../controllers/AJAX/balance_ajax.php',
 		type:'GET',
 		data:fechas,
 		success:function(tabla){

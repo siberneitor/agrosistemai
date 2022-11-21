@@ -1,13 +1,7 @@
-
-
 $(document).ready(function() {
-
 $('#btnRventas').click(function(evento) {
 		evento.preventDefault();
-
-
 	});
-
 
 //boton generar reporte verde
 	$('#btnExportar').click(function(){

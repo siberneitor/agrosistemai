@@ -113,8 +113,7 @@ $(document).ready(function() {
 			$.ajax({
 				url:'../../controllers/AJAX/agregarInventario_ajax.php',
 				type: "POST",
-				datatype:"json",
-				data:  {opcion:opcion, user_id:user_id},
+				datatype:"json",				data:  {opcion:opcion, user_id:user_id},
 				success: function() {
 					//tablaAlertInv.row(fila.parents('tr')).remove().draw();
 					tablaInventario.row(fila.parents('tr')).remove().draw();
@@ -140,6 +139,8 @@ $(document).ready(function() {
 			{"data": "unidades"},
 			{"data": "costo"},
 			{"data": "precio"},
+			{"data": "marca"},
+			{"data": "categoria"},
 			{"data": "proveedor"},
 			{"data": "fecha_ingreso"},
 			{"data": "fecha_caducidad"},

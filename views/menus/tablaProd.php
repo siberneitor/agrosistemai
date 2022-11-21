@@ -1,5 +1,5 @@
 <?php
-include '../sources.php';
+//include '../sources.php';
 include '../header.php';
 include '../adds/modales/modalAddProd.php';
 include '../adds/modales/modalAddProvee.php';
@@ -8,7 +8,9 @@ include '../adds/modales/modalAddProvee.php';
 <html>
 <head>
     <title>Productos</title>
-    <script src="/js/productos.js"></script>
+    <script src="/agrosistemai/js/productos.js"></script>
+    <script src="/agrosistemai/js/proveedor.js"></script>
+
 
 
 
@@ -21,7 +23,7 @@ include '../adds/modales/modalAddProvee.php';
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="btn btn-success" href="/views/adds/AgregarProducto.php">Agregar Producto</a>
+                <a class="btn btn-success" href="/agrosistemai/views/adds/AgregarProducto.php">Agregar Producto</a>
             </li>
             <li class="nav-item">
                 <a data-toggle="modal" data-target="#modalAddProvee" class= "btn btn-outline-secondary" href="">Agregar Proveedor</a>
@@ -50,6 +52,8 @@ include '../adds/modales/modalAddProvee.php';
             <th>codigo</th>
             <th>costo</th>
             <th>precio</th>
+            <th>marca</th>
+            <th>categoria</th>
             <th>proveedor</th>
             <th>fecha_caducidad</th>
             <th>unidades</th>
@@ -79,6 +83,8 @@ include '../adds/modales/modalAddProvee.php';
         <th>codigo</th>
         <th>costo</th>
         <th>precio</th>
+        <th>marca</th>
+        <th>categoria</th>
         <th>proveedor</th>
         <th>fecha_caducidad</th>
         <th>unidades</th>

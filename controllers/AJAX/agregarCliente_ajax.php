@@ -1,9 +1,6 @@
 <?php
-
 include '../../database/conexioni.php';
 include '../funciones.php';
-
-
 
 $opcion = $_GET['opcion'];
 
@@ -14,22 +11,9 @@ $nombreCliente=$_GET['nombreCliente'];
 	$localidad_clien=$_GET['localidad_Clie'];
 	$telef_clien=$_GET['telefono_Clien'];
 	$email_clien=$_GET['email_Clien'];
-
 	$fecha_alta = date("Y-m-d H:i:s");
 
 
-$id_cliente=$_GET['id_cliente'];
-$NombreCli=$_GET['NombreCli'];
-$ap_pat_cli=$_GET['ap_pat_cli'];
-$ap_mat_cli=$_GET['ap_mat_cli'];
-$domicilio_cli=$_GET['domicilio_cli'];
-$localid_cli=$_GET['localid_cli'];
-$telef_cli=$_GET['telef_cli'];
-$email_cli=$_GET['email_cli'];
-$cred_act_cli=$_GET['cred_act_cli'];
-$estatus_cred_cli=$_GET['estatus_cred_cli'];
-
-$cliente_id=$_GET['cliente_id'];
 
 switch($opcion){
     case 1:
@@ -39,6 +23,18 @@ switch($opcion){
 
         break;
     case 2:
+
+        $id_cliente=$_GET['id_cliente'];
+$NombreCli=$_GET['NombreCli'];
+$ap_pat_cli=$_GET['ap_pat_cli'];
+$ap_mat_cli=$_GET['ap_mat_cli'];
+$domicilio_cli=$_GET['domicilio_cli'];
+$localid_cli=$_GET['localid_cli'];
+$telef_cli=$_GET['telef_cli'];
+$email_cli=$_GET['email_cli'];
+$cred_act_cli=$_GET['cred_act_cli'];
+$estatus_cred_cli=$_GET['estatus_cred_cli'];
+$cliente_id=$_GET['cliente_id'];
 
         $rrr=$mysqli->query("
                 update cliente 
@@ -58,12 +54,10 @@ switch($opcion){
 
         break;
     case 3:
+        $cliente_id=$_GET['cliente_id'];
+
         $consulta = "DELETE FROM cliente WHERE id_cliente='$cliente_id' ";
         echo $result = $mysqli->query($consulta);
-
         break;
 }
-
-
-
 ?>

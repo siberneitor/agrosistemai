@@ -1,16 +1,16 @@
 <?php
-session_start();
+//session_start();
+//if (isset($_SESSION['user'])){
+//    header('Location: views/menus/puntoVenta.php');
+//}
 
-if (isset($_SESSION['user'])){
-    header('Location: /views/menus/puntoVenta.php');
+if (isset($_POST['cerrar'])){
+    @session_start();
+    session_destroy();
 }
 
 
-if ($_GET['cerrar']){
-   session_destroy();
-}
-
-include 'sources.php';
+//include 'sources.php';
 
 
 ?>
@@ -18,8 +18,17 @@ include 'sources.php';
 <head>
     <meta charset="utf-8">
     <title>login</title>
-<script src="/js/login.js"></script>
-<link rel="stylesheet" href="/css/login.css">
+<script src="../librerias/jquery-3.2.1.min.js"></script>
+<script src="../js/login.js"></script>
+    <!--bootstrap -->
+    <script src="../librerias/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../librerias/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+    <!-- alertify -->
+    <script src="../librerias/alertifyjs/alertify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.min.css">
+    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.min.css">
+
+    <link rel="stylesheet" href="../css/login.css">
 <!--    <link rel="icon"  type="image/png" href="iconoventa.png">-->
 
 </head>

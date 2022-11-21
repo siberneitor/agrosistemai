@@ -9,7 +9,7 @@ include '../adds/modales/modalAddProvee.php';
 <html>
 <head>
     <title>Gastos</title>
-    <script src="/js/gastos.js"></script>
+    <script src="/agrosistemai/js/gastos.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar bg-light">
