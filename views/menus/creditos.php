@@ -18,7 +18,7 @@ include '../header.php';
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="btn btn-success" href="/views/adds/addCredito.php">Nuevo Credito</a>
+                    <a class="btn btn-success" href="">Nuevo Credito</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-secondary" href=" abonos.php">Abonos</a>
@@ -68,6 +68,7 @@ include '../header.php';
             <th>Monto Total de Cred</th>
             <th>Fecha Vencimiento</th>
             <th>fecha Ultimo Abono</th>
+            <th>Garantia</th>
             <th>Periodos de Pago</th>
         </tr>
         </thead>

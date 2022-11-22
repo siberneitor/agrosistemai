@@ -28,6 +28,9 @@ if(isset($_GET['pagoInicial']) && !empty($_GET['pagoInicial'])){
 $estatusCredito=$_GET['estatusCredito'];
 $montoPrestamo=$_GET['montoPrestamo'];
 //$montoApagar=$_GET['montoApagar'];
+
+$tipoCredito=$_GET['radioTCredito'];
+$garantia=$_GET['garantia'];
 $selectCliente=$_GET['selectCliente'];
 $interes =0;
 if(!empty($_GET['interes'])){$interes=$_GET['interes'];}
@@ -81,7 +84,9 @@ switch($opcion){
             id_cliente,
             fecha_registro,
             estatus_credito,
-            id_venta
+            id_venta,
+                             tipo_credito,
+                             garantia
             )
              values (
              '$fecha_alta',
@@ -95,7 +100,9 @@ switch($opcion){
              '$selectCliente',
              '$fecha_registro',
              '$estatusCredito',
-             '$getIdVenta'             
+             '$getIdVenta',
+                     $tipoCredito,
+                     $garantia
              )")or die ($mysqli->error);
 
 //        $queryGetIdVenta = "select MAX(id_detalle_credito) as idCredito from detalle_credito";

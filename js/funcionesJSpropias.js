@@ -348,8 +348,10 @@ function datosModalcobrar(){
 }
 //forma el archivo de texto con los datos de las ventas
 function cobrar(){
+	garantia =0;
 	//$("#formCobrarContado").valid();
 	radioTVenta = $('input:radio[name=radioTipoVenta]:checked').val();
+	radioTCredito = $('input:radio[name=radioTipoCredito]:checked').val();
 	$('#txtcambio').focus();
 	nv=$('#nocli').text();
 	//idCliente =$('#tcliente').val();
@@ -357,6 +359,14 @@ function cobrar(){
 	pagoInicial=$('#txtAbonoInicial').val();
 	interesVenta=$('#interesVenta').val();
 	fVencVenta = $('#fVencVenta').val();
+	checkGarantia = document.getElementById('garantia');
+
+	if( checkGarantia.checked){
+		garantia = 1;
+	}
+
+
+
 
 	datos={
 		TOTAL:TOTAL,
@@ -367,8 +377,12 @@ function cobrar(){
 		tipoVenta:radioTVenta,
 		pagoInicial:pagoInicial,
 		interesVenta:interesVenta,
-		fVencVenta:fVencVenta
+		fVencVenta:fVencVenta,
+		radioTCredito:radioTCredito,
+		garantia:garantia
 	}
+	console.log('radioTCredito');
+	console.log(radioTCredito);
 	$.ajax({
 		//url:'f5.php',
 		url:'../../controllers/procesarVenta_controller.php',
@@ -376,7 +390,7 @@ function cobrar(){
 		data:datos,
 		success:function(x){
 			if(radioTVenta == 0){
-				cadenaValores = 'opcion=1&pagoInicial='+pagoInicial+'&estatusCredito=1&montoPrestamo='+TOTAL+'&selectCliente='+idCliente+'&interes='+interesVenta+'&fechaVenc='+fVencVenta+'&totalUnidades='+totalUnidades;
+				cadenaValores = 'opcion=1&pagoInicial='+pagoInicial+'&estatusCredito=1&montoPrestamo='+TOTAL+'&selectCliente='+idCliente+'&interes='+interesVenta+'&fechaVenc='+fVencVenta+'&totalUnidades='+totalUnidades+'&radioTCredito='+radioTCredito+'&garantia='+garantia;
 				agregarCredito(cadenaValores);
 			}
 			$("#myModal").modal("hide");
@@ -595,11 +609,11 @@ function agregarGasto($valores){
 
 
 }
-function agregarCredito($valores){
+function agregarCredito(valores){
 	//alert ('llega a funcion agergar credito');
 	$.ajax({
 		type:'GET',
-		data:$valores,
+		data:valores,
 		url:'../../controllers/AJAX/agregarCredito_ajax.php',
 		beforesend:function(){
 		},
@@ -663,8 +677,8 @@ function tablaCredXclient (d) {
 		'<thead>'+
 		'<tr>'+
 		'<th>No Credito</th>'+
-		'<th>Cantidad que Debe</th>'+
-		'<th>F. Vencimiento</th>'+
+		'<th>Cant que Debe</th>'+
+		'<th>F. Venc</th>'+
 		'<th>Monto Financ.</th>'+
 		'<th>Deuda Inic.</th>'+
 		'<th>Interes</th>'+
@@ -672,6 +686,7 @@ function tablaCredXclient (d) {
 		'<th>Monto Abonado</th>'+
 		'<th>F. Inicio Cred.</th>'+
 		'<th>No. Venta</th>'+
+		'<th>Tipo Cred</th>'+
 		'<th>Detalle Venta</th>'+
 		'</tr>'+
 		'</thead>'+

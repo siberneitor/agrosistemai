@@ -40,6 +40,7 @@ $(document).ready(function() {
 			{"data": "cantidadPrestada"},
 			{"data": "primerFechaVenc"},
 			{"data": "ultimoAbono"},
+			{"data": "garantia"},
 			{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-primary btn-sm btnCalendario'><i class='material-icons'>date_range</i></button></div></div>"}
 
 
@@ -141,6 +142,7 @@ console.log(deudaAct);
 				{"data": "cantidadPrestada"},
 				{"data": "primerFechaVenc"},
 				{"data": "ultimoAbono"},
+				{"data": "garantia"},
 				{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
 
 
@@ -188,6 +190,7 @@ console.log(deudaAct);
 					 {"data": "totalAbonos"},
 					 {"data": "fechaInicio"},
 					 {"data": "idVenta"},
+					{"data": "tipo_credito"},
 					{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-warning btn-sm btnDetalleVenta'><i class='material-icons'>receipt_long</i></button></div></div>"}
 				],
 				"destroy": true

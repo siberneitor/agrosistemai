@@ -47,6 +47,9 @@ select detalle_credito.id_detalle_credito as idCredDC,
          (SELECT IFNULL((select montoPrestado - sum(a.total)),montoPrestado) - pagoInicial) AS cantidadQdebe,
               (SELECT (SELECT IFNULL((select montoMenosPI - sum(a.total)),montoMenosPI)) * InteresXdias /100) as interesEnDinero,
         (SELECT TRUNCATE((select montoMenosPI  * InteresXdias /100) + IFNULL((select montoPrestado - sum(a.total)),montoPrestado) - pagoInicial,2))as cantidadMasInteres
+
+                                               ,IF(tipo_credito=1,'Maiz', 'Agroins') tipo_credito
+
 from detalle_credito
 left join abono a on detalle_credito.id_detalle_credito = a.id_detalle_credito
 where detalle_credito.id_cliente = '$idClienteCred'

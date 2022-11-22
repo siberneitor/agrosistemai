@@ -60,7 +60,9 @@ create table temporalCreditos as
 (select IFNULL(sum(total),0) from abono join detalle_credito dc on abono.id_detalle_credito = dc.id_detalle_credito where  dc.id_detalle_credito = idDetalleCredito and dc.estatus_credito =1) abono,
                     (select cantidadDebe - abono) deudaPresente,
        (select MIN(fecha_vencimiento) from detalle_credito where id_cliente = idCliente) as primerFechaVenc,
-                               (select  MAX(fechaAbono) from abono where id_cliente =idCliente)  as ultimoAbono
+                               (select  MAX(fechaAbono) from abono where id_cliente =idCliente)  as ultimoAbono,
+                                               IF(garantia=1, 'SI', 'no') garantia
+                          
 from cliente
  JOIN detalle_credito  ON  cliente.id_cliente = detalle_credito.id_cliente where estatus_credito =1
 ";
@@ -89,15 +91,14 @@ $consulta = $consulta.$condicion.' order by apellido_paterno';
 cantidadPrestada,
                 primerFechaVenc,
                 ultimoAbono,
-(select sum(deudaPresente) from temporalCreditos where idCliente = aliasCliente) deudaActual
+                      garantia,
+                      (select sum(deudaPresente) from temporalCreditos where idCliente = aliasCliente) deudaActual
 from temporalCreditos
         ";
         $resultado2= $mysqli->query($consulta2);
         $data= $resultado2 -> fetch_all(MYSQLI_ASSOC);
         print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
     }
-
-
 
 ?>
 
