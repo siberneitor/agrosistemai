@@ -1,9 +1,10 @@
 <?php
 include '../../database/conexioni.php';
 include '../funciones.php';
+include '../variables.php';
 
-$dtz = new DateTimeZone("America/Mexico_City");
-$dt = new DateTime("now", $dtz);
+//$dtz = new DateTimeZone("America/Mexico_City");
+//$dt = new DateTime("now", $dtz);
 //$fechaActual = date("Y-m-d");
 //$fechaActual = $dt->format('Y-m-d');
 //var_dump($dt->format('Y-m-d'));

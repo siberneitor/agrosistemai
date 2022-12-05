@@ -61,8 +61,7 @@ create table temporalCreditos as
                     (select cantidadDebe - abono) deudaPresente,
        (select MIN(fecha_vencimiento) from detalle_credito where id_cliente = idCliente) as primerFechaVenc,
                                (select  MAX(fechaAbono) from abono where id_cliente =idCliente)  as ultimoAbono,
-                                               IF(garantia=1, 'SI', 'no') garantia
-                          
+                                               IF(garantia=1, 'SI', 'NO') garantia                          
 from cliente
  JOIN detalle_credito  ON  cliente.id_cliente = detalle_credito.id_cliente where estatus_credito =1
 ";
@@ -91,7 +90,7 @@ $consulta = $consulta.$condicion.' order by apellido_paterno';
 cantidadPrestada,
                 primerFechaVenc,
                 ultimoAbono,
-                      garantia,
+                      if ((select sum(garantia) from sistemaventas2.detalle_credito where id_cliente = idCliente)>0,'si','no') garantia,
                       (select sum(deudaPresente) from temporalCreditos where idCliente = aliasCliente) deudaActual
 from temporalCreditos
         ";

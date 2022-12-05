@@ -27,10 +27,26 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="Funidades" class="col-form-label">Unidades</label>
+                                <label for="Funidades" class="col-form-label">Unidades Actuales</label>
                                 <input type="text" class="form-control" id="Funidades">
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="FunidadesNew" class="col-form-label">Unidades Nuevas</label>
+                                <input type="text" class="form-control" id="FunidadesNew">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
 
@@ -38,12 +54,6 @@
                                 <input type="text" class="form-control"  id="Fcosto" >
                             </div>
                         </div>
-                    </div>
-
-
-
-
-                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="Fprecio" class="col-form-label">Precio:</label>
@@ -53,23 +63,22 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="Fcad" class="col-form-label">Fecha Caducidad:</label>
 
-                                <input type="date" class="form-control" id="Fcad">
-                              <!--  <input type="date" class="form-control" id="Fcad"> -->
-
-
-                            </div>
-                        </div>
                     </div>
 
                     <div class = "row">
                         <div class="col-lg-6">
                             <div class="form-group">
+                                <label for="Fcad" class="col-form-label">Fecha Caducidad:</label>
+
+                                <input type="date" class="form-control" id="Fcad" disabled>
+                                <!--  <input type="date" class="form-control" id="Fcad"> -->
 
 
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
                                 <!-- Material indeterminate -->
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="statusInv" >

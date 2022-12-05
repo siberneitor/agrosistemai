@@ -36,6 +36,7 @@ $(document).ready(function() {
 	//Editar inventario
 	$(document).on("click", ".btnEditar", function(){
 		//alert('presionate el boton editar');
+		$('#FunidadesNew').val(0);
 		opcion = 2;//editar
 		fila = $(this).closest("tr");
 		Fdescripcion = fila.find('td:eq(0)').text();
@@ -44,7 +45,7 @@ $(document).ready(function() {
 		Fcosto = fila.find('td:eq(3)').text();
 		Fprecio = fila.find('td:eq(4)').text();
 		Fcad = fila.find('td:eq(7)').text();
-		estatusInv = fila.find('td:eq(8)').text();
+		estatusInv = fila.find('td:eq(10)').text();
 
 		$("#Fcodigo").val(Fcodigo);
 		$("#Fdescripcion").val(Fdescripcion);
@@ -60,7 +61,8 @@ $(document).ready(function() {
 			$("#Fcad").attr('disabled',false);
 			$("#Fcad").val(Fcad);
 		}
-
+console.log('estatusInv');
+console.log(estatusInv);
 		if (estatusInv =='activo'){
 			$('#statusInv').prop("checked",true);
 		}else{
@@ -86,6 +88,7 @@ $(document).ready(function() {
 		Fcodigo = $.trim($('#Fcodigo').val());
 		Fdescripcion = $.trim($('#Fdescripcion').val());
 		Funidades = $.trim($('#Funidades').val());
+		FunidadesNew = $.trim($('#FunidadesNew').val());
 		Fcosto = $.trim($('#Fcosto').val());
 		Fprecio = $.trim($('#Fprecio').val());
 		Fcad = $.trim($('#Fcad').val());
@@ -93,9 +96,10 @@ $(document).ready(function() {
 			url:'../../controllers/AJAX/agregarInventario_ajax.php',
 			type: "POST",
 			datatype:"json",
-			data:  {Fcodigo:Fcodigo, Fdescripcion:Fdescripcion, addUnidInv:Funidades, addCostoInv:Fcosto, addPrecioInv:Fprecio, addFcad:Fcad ,opcion:opcion, statusInv:statusInv},
+			data:  {Fcodigo:Fcodigo, Fdescripcion:Fdescripcion, addUnidInv:Funidades,FunidadesNew:FunidadesNew, addCostoInv:Fcosto, addPrecioInv:Fprecio, addFcad:Fcad ,opcion:opcion, statusInv:statusInv},
 			success: function(data) {
 				tablaInventario.ajax.reload(null, false);
+				$('#FunidadesNew').val(0);
 			}
 		});
 

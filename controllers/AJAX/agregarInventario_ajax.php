@@ -2,6 +2,8 @@
 //include 'conexion.php';
 include '../../database/conexioni.php';
 include '../funciones.php';
+include '../variables.php';
+
 
 $correcto = true;
 $addCodInv =NULL;
@@ -17,17 +19,19 @@ if (isset($_POST['usaFcad']) && !empty($_POST['usaFcad']) ){$usaFcad = $_POST['u
 if (isset($_POST['user_id']) && !empty($_POST['user_id']) ){$user_id = $_POST['user_id'];}
 
 $unidades=$_POST['addUnidInv'];
+$unidadesNew=$_POST['FunidadesNew'];
 $addCostoInv=$_POST['addCostoInv'];
 $addPrecioInv=$_POST['addPrecioInv'];
 
 $statusInv=$_POST['statusInv'];
 
 $Fcodigo = $_POST['Fcodigo'];
+$fechaActual =  $dt->format("Y-m-d H:i:s");
 
-$fechaActual = date("Y-m-d H:i:s");
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 
+$sumaUnid = $unidades + $unidadesNew;
 
 
 switch ($opcion) {
@@ -46,10 +50,10 @@ switch ($opcion) {
             }else{
                 //crear procedimiento para dar de alta el codigo nuevo ewn el inventario
                 if ($usaFcad) {
-                     $agregar = $mysqli->query("insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,fecha_caducidad,estatus) values ('$addCodInv','$unidades','$addCostoInv','$addPrecioInv','$fechaActual','$usaFcad',1)");
+//                     $agregar = $mysqli->query("insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,fecha_caducidad,estatus) values ('$addCodInv','$unidades','$addCostoInv','$addPrecioInv','$fechaActual','$usaFcad',1)");
 
                 } else {
-                     $agregar = $mysqli->query("insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,estatus) values ('$addCodInv','$unidades','$addCostoInv','$addPrecioInv','$fechaActual',1)");
+                     $agregar = $mysqli->query("insert into inventario (codigo,unidades,costo,precio,fecha_ingreso,estatus) values ('$addCodInv','$sumaUnid','$addCostoInv','$addPrecioInv','$fechaActual',1)");
 
                 }
 
@@ -60,14 +64,18 @@ switch ($opcion) {
         break;
     //actualiza  tabla inventario
     case 2:
+        $sql=0;
       // var_dump('entraste al caso 2 y la var $addFcad contiene: '. $addFcad);
 
            //si el producto no tiene fecha de caducidad
         if(empty($addFcad)){
 
-                  $sql = $mysqli->query("
+            if($unidadesNew !=0){
+
+
+                  $updateInv = $mysqli->query("
            update inventario 
-             set  unidades ='$unidades',
+             set  unidades ='$sumaUnid',
                   costo='$addCostoInv',
                   precio='$addPrecioInv',
                                 
@@ -77,35 +85,38 @@ switch ($opcion) {
                   ");
 
                   //si se ha hecho algun cambio al momento de actualizar el registro
-                  if ($mysqli->affected_rows){
-                      $sql ="update inventario set fecha_ingreso = '$fechaActual'  where codigo = '$Fcodigo'";
+                  if ($updateInv){
+
+                      $sql ="update inventario set ultimaFechaIngreso = '$fechaActual'  where codigo = '$Fcodigo'";
+                      $actualizaUltimaFecha = $mysqli->query($sql);
 
                       //inserta en la tabla historial inventario los valores cambiados
-                      $consulta = "insert into historial_inventario values(NULL,'$Fcodigo','$unidades','$addCostoInv','$addPrecioInv',null,'$fechaActual',NULL)";
+                      $consulta = "insert into historial_inventario values(NULL,'$Fcodigo','$unidadesNew','$addCostoInv','$addPrecioInv',null,'$fechaActual',NULL)";
                       $resultadoConsulta = $mysqli->query($consulta);
                   }
+            }
         }//si el producto incluye fecha de caducidad
          else{
-                  $sql = $mysqli->query("
-           update inventario 
-             set  unidades ='$unidades',
-                  costo='$addCostoInv',
-                  precio='$addPrecioInv',
-                  
-                  fecha_caducidad='$addFcad',
-                  id_gasto = NULL,
-                  estatus = '$statusInv'          
-                  where codigo = '$Fcodigo';
-                  ");
-
-                 //si se ha hecho algun cambio al momento de actualizar el registro
-               if($mysqli->affected_rows){
-                  $sql ="update inventario set fecha_ingreso = '$fechaActual'  where codigo = '$Fcodigo'";
-
-                  //inserta en tabla inventario
-                  $consulta = "insert into historial_inventario values(NULL,'$Fcodigo','$unidades','$addCostoInv','$addPrecioInv','$addFcad','$fechaActual',NULL)";
-                  $resultadoConsulta = $mysqli->query($consulta);
-               }
+//                  $sql = $mysqli->query("
+//           update inventario
+//             set  unidades ='$unidades',
+//                  costo='$addCostoInv',
+//                  precio='$addPrecioInv',
+//
+//                  fecha_caducidad='$addFcad',
+//                  id_gasto = NULL,
+//                  estatus = '$statusInv'
+//                  where codigo = '$Fcodigo';
+//                  ");
+//
+//                 //si se ha hecho algun cambio al momento de actualizar el registro
+//               if($mysqli->affected_rows){
+//                  $sql ="update inventario set fecha_ingreso = '$fechaActual'  where codigo = '$Fcodigo'";
+//
+//                  //inserta en tabla inventario
+//                  $consulta = "insert into historial_inventario values(NULL,'$Fcodigo','$unidades','$addCostoInv','$addPrecioInv','$addFcad','$fechaActual',NULL)";
+//                  $resultadoConsulta = $mysqli->query($consulta);
+//               }
          }
          //si el codigo se actualizo con exito
          if($sql) {

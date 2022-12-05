@@ -51,17 +51,29 @@ $(document).ready(function() {
 		costo = fila.find('td:eq(2)').text();
 		precio = fila.find('td:eq(3)').text();
 		marca = fila.find('td:eq(4)').text();
+		// console.log("$('#marca').val()");
+// console.log($('#marca').val());
 		categoria = fila.find('td:eq(5)').text();
 		proveedor = fila.find('td:eq(6)').text();
+		// console.log('proveesdor');
+		// console.log(proveedor);
 		fecha_caducidad = fila.find('td:eq(7)').text();
 		unidades = fila.find('td:eq(8)').text();
+
 		$("#codigo").val(codigo);
 		$("#descripcion").val(descripcion);
 		$("#costo").val(costo);
 		$("#precio").val(precio);
-		$("#marca").val(marca);
+		// console.log('marca');
+		// console.log(marca);
+		// $("#marca").append(marca);
+		// console.log("$('#marca').val()");
+// console.log($('#marca').val());
+		$("#marca option:contains("+marca+")").attr('selected', true);
 		$("#categoria").val(categoria);
-		$("#proveedor").val(proveedor);
+		// $("#proveedor").val(proveedor);
+		$("#proveedor option:contains("+proveedor+")").attr('selected', true);
+
 		$("#fecha_caducidad").val(fecha_caducidad);
 		$("#unidades").val(unidades);
 		$(".modal-header").css("background-color", "#007bff");
@@ -72,22 +84,41 @@ $(document).ready(function() {
 	});
 
 	$('#formUsuarios').submit(function(e){
+
+
+
+
 		//alert('VAS BIEN');
 		e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
 		Codigo = $.trim($('#codigo').val());
 		Art = $.trim($('#descripcion').val());
 		Costo = $.trim($('#costo').val());
 		Precio = $.trim($('#precio').val());
-		marca = $.trim($('#marca').val());
+		marca = $.trim($("#proveedor option:selected").text());
+		// marca = $.trim($('#marca').val());
 		categoria = $.trim($('#categoria').val());
-		Provee = $.trim($('#proveedor').val());
+		// proovProd = $('#proveedor').();
+		proovProd = $.trim($("#proveedor option:selected").text());
+
+		$('#idMarca').val($('#marca').val());
+		$('#idProov').val($('#proveedor').val());
+		idProov = $.trim($('#idProov').val());
+		idMarca = $.trim($('#idMarca').val());
+
+		console.log('proovProd');
+		console.log(proovProd);
+		console.log('idProov');
+		console.log(idProov);
 		Fcad = $.trim($('#fecha_caducidad').val());
 		Unidades = $.trim($('#unidades').val());
+		UnidNew = $.trim($('#unidNew').val());
+		console.log('UnidNew');
+		console.log(UnidNew);
 		$.ajax({
 			url:'../../controllers/AJAX/agregarProducto_ajax.php',
 			type: "POST",
 			datatype:"json",
-			data:  {Codigo:Codigo,Art:Art,Costo:Costo,Precio:Precio,marca:marca,categProd:categoria,Provee:Provee,Fcad:Fcad,Unidades:Unidades,opcion:opcion},
+			data:  {Codigo:Codigo,Art:Art,Costo:Costo,Precio:Precio,marca:marca,idMarca:idMarca,categProd:categoria,proovProd:proovProd,idProov:idProov,Fcad:Fcad,Unidades:Unidades,UnidNew:UnidNew,opcion:opcion},
 			success: function(data) {
 				tablaUsuarios.ajax.reload(null, false);
 			}
@@ -133,7 +164,9 @@ $(document).ready(function() {
 			{"data": "proveedor"},
 			{"data": "fecha_caducidad"},
 			{"data": "unidades"},
-			{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+			{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-secondary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-outline-secondary" +
+					"" +
+					" btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
 		]
 	});
 })

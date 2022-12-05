@@ -105,9 +105,9 @@ function agregarProducto(codigoProd,nombreProd,marcaProd,categProd,proovProd){
 		opcion:1,
 		Codigo:codigoProd,
 		Art:nombreProd,
-		marca:marcaProd,
+		idMarca:marcaProd,
 		categProd:categProd,
-		proovProd:proovProd,
+		idProov:proovProd,
 	}
 	$.ajax({
 		type:'POST',
@@ -131,6 +131,7 @@ function agregarProducto(codigoProd,nombreProd,marcaProd,categProd,proovProd){
 
 				$('#selectProv').val(0);
 				$('#selectProv').multiselect('refresh');
+				$('#unidNew').val(0);
 
 				// document.getElementById('selectProv').multiselect('refresh');
 
@@ -174,6 +175,8 @@ function agregarInventario($addCodInv,$unidades,$addCostoInv,$addPrecioInv,$fadd
 		url:'/controllers/AJAX/agregarInventario_ajax.php',
 		data:cadena,
 		success:function(respuesta){
+			$('#unidNew').val(0);
+
 			console.log('entro a success');
 			//console.log(respuesta);
 

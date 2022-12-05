@@ -13,7 +13,7 @@ $query= "select inventario.codigo,
       marca.nombre_marca marca,
        categoria.nombre_categoria categoria,
      proveedores.nombre as proveedor,
-     inventario.fecha_ingreso,
+     inventario.ultimaFechaIngreso fecha_ingreso,
 	 inventario.fecha_caducidad,      
 	 (select  if(inventario.estatus = 1, \"activo\", \"inactivo\")) as estatus
      from inventario

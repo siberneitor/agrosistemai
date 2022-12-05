@@ -3,23 +3,14 @@ agroinsumos llano grande
 Huitzuco Guerrero
 tel: 7271028618
 NO. ticket :223
-no. cliente:516
-Tipo de venta:CREDITO
-21-11-22   19:44:32
+no. cliente:1
+Tipo de venta:contado
+04-12-22   13:07:05
 
 cantidad codigo articulo precio total
 
-1/1/articulo 1/30.00/30.00
-1/3/articulo 3/4.00/4.00
+20/3/articulo 3/4.00/80.00
 
-Cantidad de productos: 2
-
- Cant Inicial  Credito:         34.00
-Pago Inicial: 4.00
-Por pagar: 30.00
-Pago al 21-12-22 30.66
-Pago al 20-01-23 31.32
-Pago al 19-02-23 31.98
-Pago al 21-03-23 32.64
-Pago al 20-04-23 33.30
-Pago al 20-05-23 33.66
+                  TOTAL:         80.00
+efectivo: 100.00
+Cambio: 20.00

@@ -3,6 +3,9 @@
 //include '../../../controllers/AJAX/valoresSelect.php';
 //include '/agrosistemai/controllers/AJAX/valoresSelect.php';
 include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.php");
+//include '../adds/modales/modalAddMarca.php';
+include '../../controllers/AJAX/valoresSelect.php';
+
 ?>
 
 <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -19,7 +22,7 @@ include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="codigo" class="col-form-label">Codigo:</label>
-                                <input type="text" class="form-control" id="codigo">
+                                <input type="text" class="form-control" id="codigo" disabled>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -31,10 +34,20 @@ include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="marca" class="col-form-label">Marca:</label>
-                                <input type="text" class="form-control" id="marca">
-                            </div>
+
+                            <label for="marca" class="col-form-label">Marca:</label>
+
+                            <select class="form-control input-sm" id="marca" name="marca">
+                                <?php
+                                while ($fila = $resultMarca->fetch_assoc()){
+                                    $idCateg= $fila["id_marca"];
+                                    $descCateg= $fila["nombre_marca"];
+                                    echo '<option value="'.$idCateg.'">'.$descCateg.'</option>';
+                                }
+                                ?>
+                            </select>
+
+                            <input type = "text" id ="idMarca"  hidden>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -47,7 +60,18 @@ include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="proveedor" class="col-form-label">proveedor:</label>
-                                <input type="text" class="form-control" id="proveedor">
+<!--                                <input type="text" class="form-control" id="proveedor">-->
+                                <select class="form-control input-sm" id="proveedor" name="proveedor">
+                                    <?php
+                                    while ($fila = $result->fetch_assoc()){
+                                        $idProv= $fila["id_proov"];
+                                        $descProv= $fila["nombre"];
+                                        echo '<option value="'.$idProv.'">'.$descProv.'</option>';
+                                    }
+                                    ?>
+                                </select>
+
+                                <input type = "text" id ="idProov"  hidden>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -74,9 +98,14 @@ include($_SERVER['DOCUMENT_ROOT']."/agrosistemai/controllers/AJAX/valoresSelect.
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="selectProv" class="col-form-label">Unidades:</label>
-                                <input type="text" class="form-control" id="unidades"
-                                >
+                                <label for="unidades" class="col-form-label">Unidades Actuales:</label>
+                                <input type="text" class="form-control" id="unidades" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="unidNew" class="col-form-label">Unidades Nuevas:</label>
+                                <input type="text" class="form-control" id="unidNew" value = 0>
                             </div>
                         </div>
                     </div>
